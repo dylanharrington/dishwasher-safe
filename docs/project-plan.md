@@ -47,9 +47,9 @@ Spin up a second SEO micro-site using the Laundry Settings pattern, but focused 
 - [x] Generate first item/material/question pages
 - [x] Add sitemap, robots.txt, canonical URLs
 - [x] Add schema markup
-- [ ] Deploy to Vercel preview/production
-- [ ] Create GitHub repo
-- [ ] Pick/buy/connect domain
-- [ ] Set up Google Search Console
-- [ ] Submit sitemap
-- [ ] Add analytics
+- [x] Deploy to Vercel preview/production
+- [x] Create GitHub repo
+- [x] Pick/buy/connect domain: `isdishwashersafe.com`
+- [x] Set up Google Search Console: `sc-domain:isdishwashersafe.com`
+- [x] Submit sitemap: `https://isdishwashersafe.com/sitemap-index.xml`
+- [x] Add analytics: GA4 `G-70HCESJDXC`

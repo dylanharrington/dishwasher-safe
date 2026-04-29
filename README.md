@@ -10,8 +10,9 @@ Small SEO utility site for direct dishwasher-safe answers.
 
 ## Links
 
-- Production: https://dishwasher-safe.vercel.app
-- Domain: TBD, intentionally not purchased/connected yet
+- Production: https://isdishwashersafe.com
+- Vercel preview: https://dishwasher-safe.vercel.app
+- Domain: isdishwashersafe.com
 
 ## Tracking
 

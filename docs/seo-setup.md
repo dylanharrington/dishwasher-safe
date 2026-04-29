@@ -2,19 +2,23 @@
 
 ## Domain
 
-Domain intentionally not purchased/connected yet.
+Canonical domain: https://isdishwashersafe.com
+
+Vercel project: `dishwasher-safe` under `dylanharringtons-projects`.
 
 ## Search Console
 
-After domain is chosen:
+Configured on 2026-04-29:
 
-1. Add domain property in Google Search Console.
-2. Add DNS TXT verification record through registrar/Vercel DNS.
-3. Submit sitemap: /sitemap-index.xml
+- Property: `sc-domain:isdishwashersafe.com`
+- Sitemap: https://isdishwashersafe.com/sitemap-index.xml
+- Latest setup output showed 0 errors / 0 warnings on submission.
 
 ## Analytics
 
-Set these env vars in Vercel when ready:
+Configured on 2026-04-29:
 
-- PUBLIC_GA_MEASUREMENT_ID
-- PUBLIC_GOOGLE_SITE_VERIFICATION
+- GA4 property: `properties/535293566`
+- Measurement ID: `G-70HCESJDXC`
+- Vercel env: `PUBLIC_GA_MEASUREMENT_ID` set for production
+- Vercel env: `SITE_URL=https://isdishwashersafe.com` set for production

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dishwasher-safe.vercel.app/sitemap-index.xml
+Sitemap: https://isdishwashersafe.com/sitemap-index.xml

@@ -1,0 +1,36 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import { items, materials, verdictLabels } from '../data/items';
+---
+<BaseLayout title="Dishwasher Safe? Fast yes/no answers" description="Find out whether common kitchen items can go in the dishwasher, where to put them, and what to avoid.">
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span> Direct dishwasher answers</div>
+    <h1>Can this go in the <em>dishwasher?</em></h1>
+    <p>Pick an item and get the answer first: yes, no, top rack only, or it depends. Then see rack placement, cycle, drying, and the caveats that matter.</p>
+    <div class="pills"><span>Top-rack guidance</span><span>No fluff</span><span>Care-label aware</span></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Popular items</h2><p>Fast answers for the searches people make while standing at the sink.</p></div>
+    <div class="grid">
+      {items.slice(0, 12).map((item) => (
+        <a class="card" href={`/items/${item.slug}/`}>
+          <span class="icon-badge"><Icon name="dishwasher" /></span>
+          <strong>{item.name}</strong>
+          <p><span class="chip">{verdictLabels[item.verdict]}</span></p>
+          <p>{item.shortAnswer}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Browse by material</h2><p>When you know what it’s made of but not the exact product.</p></div>
+    <div class="grid">
+      {materials.map((material) => (
+        <a class="card" href={`/materials/${material.slug}/`}><span class="icon-badge"><Icon name="sparkle" /></span><strong>{material.name}</strong><p>{material.shortAnswer}</p></a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

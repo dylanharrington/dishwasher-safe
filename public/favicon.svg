@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Dishwasher Safe">
+  <rect width="64" height="64" rx="16" fill="#F7F7F2"/>
+  <rect x="16" y="10" width="32" height="44" rx="6" fill="#FFFFFF" stroke="#13243A" stroke-width="4"/>
+  <path d="M22 20h20" stroke="#13243A" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="25" cy="29" r="3" fill="#2B8C7E"/>
+  <circle cx="34" cy="34" r="4" fill="#BFE4DE" stroke="#13243A" stroke-width="2"/>
+  <path d="M23 45c5-5 13 5 18 0" fill="none" stroke="#F0A34A" stroke-width="4" stroke-linecap="round"/>
+</svg>

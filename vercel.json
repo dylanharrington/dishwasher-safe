@@ -1,14 +1,14 @@
 {
   "redirects": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "has": [
         {
           "type": "host",
           "value": "www.isdishwashersafe.com"
         }
       ],
-      "destination": "https://isdishwashersafe.com/:path*",
+      "destination": "https://isdishwashersafe.com/$1",
       "permanent": true
     }
   ]

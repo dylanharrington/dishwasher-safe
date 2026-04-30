@@ -4,18 +4,20 @@ import Icon from '../../components/Icon.astro';
 import { findItem, items, verdictLabels } from '../../data/items';
 export function getStaticPaths(){ return items.map((item)=>({ params:{ slug:item.slug }})); }
 const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not found');
-const title = `Can you put ${item.name} in the dishwasher?`;
+const question = `Can you put ${item.name} in the dishwasher?`;
+const title = `Quick answer: ${question}`;
 const description = item.shortAnswer;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
-const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}}]};
+const canonicalPath = `/items/${item.slug}/`;
+const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}}]};
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} canonicalPath={canonicalPath} noindex={true}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <nav class="breadcrumbs"><a href="/">Home</a><span>/</span><a href="/can-you/">Can you?</a><span>/</span><span>{item.name}</span></nav>
   <article class="section">
     <section class="answer-card">
       <span class={`verdict ${verdictClass}`}><Icon name={item.verdict === 'no' ? 'warning' : 'check'} />{verdictLabels[item.verdict]}</span>
-      <h1>{title}</h1>
+      <h1>{question}</h1>
       <p class="answer-text">{item.shortAnswer}</p>
       <div class="tiles"><div class="tile"><span class="tile-label">Rack</span><span class="tile-value">{item.placement}</span></div><div class="tile"><span class="tile-label">Cycle</span><span class="tile-value">{item.cycle}</span></div><div class="tile"><span class="tile-label">Drying</span><span class="tile-value">{item.dry}</span></div></div>
     </section>

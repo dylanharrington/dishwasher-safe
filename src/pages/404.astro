@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+
+const popularItems = [
+  { href: '/items/yeti-cups/', label: 'Yeti cups and tumblers' },
+  { href: '/items/hydro-flask/', label: 'Hydro Flask bottles' },
+  { href: '/items/cast-iron-skillet/', label: 'cast iron skillets' },
+  { href: '/items/kitchen-knives/', label: 'kitchen knives' },
+  { href: '/items/baby-bottles/', label: 'baby bottles' },
+  { href: '/items/food-storage-containers/', label: 'food storage containers' },
+];
+---
+<BaseLayout title="Page not found | Dishwasher Safe?" description="Find dishwasher-safe answers by item, material, or quick can-you question." noindex={true}>
+  <nav class="breadcrumbs"><a href="/">Home</a><span>/</span><span>Page not found</span></nav>
+  <section class="hero">
+    <div class="eyebrow"><span class="dot"></span> 404</div>
+    <h1>This page went through the <em>wrong cycle.</em></h1>
+    <p>Try one of the main dishwasher-safe guides below, or jump straight to a popular item people look up from the sink.</p>
+    <div class="pills"><span>Fast answers</span><span>Rack placement</span><span>Care caveats</span></div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Find your answer</h2><p>Browse the main Dishwasher Safe? recovery paths.</p></div>
+    <div class="link-row">
+      <a class="link-card" href="/items/"><span>Browse all items</span><Icon name="arrow" /></a>
+      <a class="link-card" href="/materials/"><span>Browse by material</span><Icon name="arrow" /></a>
+      <a class="link-card" href="/can-you/"><span>Quick can-you answers</span><Icon name="arrow" /></a>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Popular dishwasher-safe questions</h2><p>Common searches with direct yes/no guidance.</p></div>
+    <div class="grid">
+      {popularItems.map((item) => (
+        <a class="card" href={item.href}>
+          <span class="icon-badge"><Icon name="dishwasher" /></span>
+          <strong>{item.label}</strong>
+          <p>See whether it can go in the dishwasher, where to place it, and what to watch for.</p>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

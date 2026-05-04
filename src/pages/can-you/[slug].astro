@@ -11,7 +11,7 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
 ---
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
-  <nav class="breadcrumbs"><a href="/">Home</a><span>/</span><a href="/can-you/">Can you?</a><span>/</span><span>{item.name}</span></nav>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/can-you/">Can you?</a><span aria-hidden="true">/</span><span aria-current="page">{item.name}</span></nav>
   <article class="section">
     <section class="answer-card">
       <span class={`verdict ${verdictClass}`}><Icon name={item.verdict === 'no' ? 'warning' : 'check'} />{verdictLabels[item.verdict]}</span>

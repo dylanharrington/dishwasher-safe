@@ -10,7 +10,7 @@ const description = material.shortAnswer;
 const verdictClass = material.defaultVerdict === 'top-rack' ? 'top-rack' : material.defaultVerdict;
 ---
 <BaseLayout title={title} description={description}>
-  <nav class="breadcrumbs"><a href="/">Home</a><span>/</span><a href="/materials/">Materials</a><span>/</span><span>{material.name}</span></nav>
+  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/materials/">Materials</a><span aria-hidden="true">/</span><span aria-current="page">{material.name}</span></nav>
   <article class="section">
     <section class="answer-card"><span class={`verdict ${verdictClass}`}>{verdictLabels[material.defaultVerdict]}</span><h1>{title}</h1><p class="answer-text">{material.shortAnswer}</p></section>
     <section class="section"><h2>Caveats</h2><ul class="caveats">{material.caveats.map((c)=><li><Icon name="warning" /><span>{c}</span></li>)}</ul></section>

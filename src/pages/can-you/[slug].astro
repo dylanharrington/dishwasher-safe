@@ -7,9 +7,10 @@ const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not f
 const title = `Can you put ${item.name} in the dishwasher?`;
 const description = item.shortAnswer;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
+const canonical = new URL(`/items/${item.slug}/`, Astro.site).toString();
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}}]};
 ---
-<BaseLayout title={title} description={description}>
+<BaseLayout title={title} description={description} canonical={canonical} noindex>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/can-you/">Can you?</a><span aria-hidden="true">/</span><span aria-current="page">{item.name}</span></nav>
   <article class="section">

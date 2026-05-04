@@ -6,7 +6,7 @@ import { materials, verdictLabels } from '../../data/items';
 <BaseLayout title="Dishwasher-safe materials" description="Dishwasher guidance for stainless steel, silicone, wood, glass, plastic, nonstick, cast iron, and ceramic.">
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Materials</span></nav>
   <section class="section">
-    <div class="section-head"><h2>Dishwasher-safe materials</h2><p>General rules by material, with exceptions.</p></div>
+    <div class="section-head"><h1>Dishwasher-safe materials</h1><p>General rules by material, with exceptions.</p></div>
     <div class="grid">
       {materials.map((material)=>(
         <a class="card" href={`/materials/${material.slug}/`}><span class="icon-badge"><Icon name="sparkle" /></span><strong>{material.name}</strong><p><span class="chip">{verdictLabels[material.defaultVerdict]}</span></p><p>{material.shortAnswer}</p></a>

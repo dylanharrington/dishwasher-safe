@@ -79,11 +79,11 @@ export const items: DishItem[] = [
     materials: ['plastic-lids', 'silicone', 'glass'],
   },
   {
-    slug: 'air-fryer-basket', name: 'air fryer baskets', aliases: ['air fryer tray', 'air fryer drawer'], verdict: 'depends',
-    shortAnswer: 'Some air fryer baskets are dishwasher safe, but hand washing is safer for nonstick coatings unless the manual clearly says dishwasher safe.',
-    placement: 'Bottom rack only if manual allows; otherwise hand wash', cycle: 'Normal cycle only if labeled safe', dry: 'Dry completely before reinstalling',
-    why: 'Dishwasher detergent and rack contact can wear nonstick coatings faster.',
-    caveats: ['Never submerge or dishwash the powered air fryer body.', 'Avoid abrasive pads on nonstick baskets.', 'Check whether removable crisping plates have separate instructions.'],
+    slug: 'air-fryer-basket', name: 'air fryer baskets', aliases: ['air fryer tray', 'air fryer drawer', 'air fryer crisper plate'], verdict: 'depends',
+    shortAnswer: 'Some air fryer baskets are dishwasher safe, but many nonstick air fryer baskets should be hand washed unless the manual clearly says the basket, tray, or drawer can go in the dishwasher.',
+    placement: 'Bottom rack only if manual allows; otherwise hand wash', cycle: 'Normal cycle only if labeled dishwasher safe', dry: 'Dry completely before reinstalling',
+    why: 'Queries like “air fryer basket dishwasher safe,” “are air fryer baskets dishwasher safe,” and “can air fryer basket go in dishwasher” all come down to the exact removable part and coating. Dishwasher detergent and rack contact can wear nonstick coatings faster.',
+    caveats: ['Never submerge or dishwash the powered air fryer body.', 'Avoid abrasive pads on nonstick baskets.', 'Check whether removable crisping plates, trays, racks, or drawers have separate instructions.'],
     materials: ['nonstick', 'stainless-steel'],
   },
   {
@@ -191,11 +191,11 @@ export const items: DishItem[] = [
     materials: ['ceramic', 'glass'],
   },
   {
-    slug: 'pet-bowls', name: 'pet bowls', aliases: ['dog bowl', 'cat bowl'], verdict: 'yes',
-    shortAnswer: 'Most stainless steel or ceramic pet bowls are dishwasher safe. Wash plastic pet bowls only if labeled dishwasher safe.',
+    slug: 'pet-bowls', name: 'pet and dog bowls', aliases: ['dog bowl', 'dog bowls', 'cat bowl', 'stainless dog bowls', 'ceramic dog bowls'], verdict: 'yes',
+    shortAnswer: 'Most stainless steel or ceramic dog bowls and pet bowls are dishwasher safe. Wash plastic dog bowls only if they are labeled dishwasher safe.',
     placement: 'Bottom rack if secure; plastic on top rack', cycle: 'Normal or sanitize cycle if allowed', dry: 'Dry completely',
-    why: 'Stainless and ceramic bowls handle dishwashing well, while plastic can scratch, warp, or hold odors.',
-    caveats: ['Wash pet bowls separately if preferred for hygiene.', 'Replace scratched plastic bowls.', 'Check rubber non-slip bases before dishwashing.'],
+    why: 'Stainless and ceramic dog bowls handle dishwashing well, while plastic pet bowls can scratch, warp, or hold odors. Slow-feeder bowls and rubber bases need a closer label check.',
+    caveats: ['Wash dog bowls and pet bowls separately if preferred for hygiene.', 'Replace scratched plastic bowls.', 'Check rubber non-slip bases and slow-feeder inserts before dishwashing.'],
     materials: ['stainless-steel', 'ceramic', 'plastic-lids'],
   },
 ];

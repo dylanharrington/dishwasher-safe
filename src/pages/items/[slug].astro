@@ -5,6 +5,7 @@ import { findItem, items, verdictLabels, findMaterial } from '../../data/items';
 export function getStaticPaths(){ return items.map((item)=>({ params:{ slug:item.slug }})); }
 const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not found');
 const title = `Can you put ${item.name} in the dishwasher?`;
+const updatedLabel = 'Updated May 4, 2026';
 const description = `${item.shortAnswer} Includes rack placement, cycle, drying, and caveats.`;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}}]};
@@ -17,6 +18,7 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
       <span class={`verdict ${verdictClass}`}><Icon name={item.verdict === 'no' ? 'warning' : 'check'} />{verdictLabels[item.verdict]}</span>
       <h1>{title}</h1>
       <p class="answer-text">{item.shortAnswer}</p>
+      <p class="updated-line">{updatedLabel}</p>
       <div class="tiles"><div class="tile"><span class="tile-label">Rack</span><span class="tile-value">{item.placement}</span></div><div class="tile"><span class="tile-label">Cycle</span><span class="tile-value">{item.cycle}</span></div><div class="tile"><span class="tile-label">Drying</span><span class="tile-value">{item.dry}</span></div></div>
     </section>
     <section class="section"><h2>Why</h2><p>{item.why}</p></section>

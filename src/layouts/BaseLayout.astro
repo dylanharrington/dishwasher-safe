@@ -1,6 +1,6 @@
 ---
-const { title = 'Dishwasher Safe?', description = 'Fast answers for what can and cannot go in the dishwasher.', canonical: canonicalOverride, noindex = false } = Astro.props;
-const canonical = canonicalOverride ?? new URL(Astro.url.pathname, Astro.site).toString();
+const { title = 'Dishwasher Safe?', description = 'Fast answers for what can and cannot go in the dishwasher.', canonical: canonicalOverride, canonicalPath, noindex = false } = Astro.props;
+const canonical = canonicalOverride ?? new URL(canonicalPath ?? Astro.url.pathname, Astro.site).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
 const googleSiteVerification = import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION;
 const shouldLoadGA = typeof gaMeasurementId === 'string' && /^G-[A-Z0-9]+$/.test(gaMeasurementId);

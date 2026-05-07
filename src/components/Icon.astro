@@ -1,8 +1,10 @@
 ---
-const { name, ...rest } = Astro.props;
+const { name, 'aria-label': ariaLabel, ...rest } = Astro.props;
+const role: 'img' | undefined = ariaLabel ? 'img' : undefined;
+const ariaHidden = ariaLabel ? undefined : 'true';
 ---
 {name === 'dishwasher' && (
-  <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <rect x="8" y="4" width="16" height="24" rx="3" />
     <path d="M11 10h10" />
     <circle cx="13" cy="16" r="2" stroke="var(--accent-teal)" />
@@ -10,30 +12,30 @@ const { name, ...rest } = Astro.props;
   </svg>
 )}
 {name === 'rack' && (
-  <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <path d="M5 12h22M7 12l2 12h14l2-12" />
     <path d="M11 16v5M16 16v5M21 16v5" stroke="var(--accent-teal)" />
   </svg>
 )}
 {name === 'sparkle' && (
-  <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <path d="M16 4l2.6 8.4L27 15l-8.4 2.6L16 26l-2.6-8.4L5 15l8.4-2.6L16 4z" />
   </svg>
 )}
 {name === 'warning' && (
-  <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <path d="M16 5l12 22H4L16 5z" />
     <path d="M16 13v6" />
     <circle cx="16" cy="23" r=".8" fill="currentColor" stroke="none" />
   </svg>
 )}
 {name === 'arrow' && (
-  <svg viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <path d="M6 16h20" /><path d="M19 9l7 7-7 7" />
   </svg>
 )}
 {name === 'check' && (
-  <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" {...rest}>
+  <svg viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" role={role} aria-label={ariaLabel} aria-hidden={ariaHidden} {...rest}>
     <path d="M7 17l6 6L25 9" />
   </svg>
 )}

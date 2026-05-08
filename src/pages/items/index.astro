@@ -2,8 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { items, verdictLabels } from '../../data/items';
+
+const itemsUrl = new URL('/items/', Astro.site).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Dishwasher-safe answers by item',
+  url: itemsUrl,
+  description: 'Browse dishwasher-safe guidance for common kitchen items, bottles, lids, cookware, and baby gear.',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: new URL(`/items/${item.slug}/`, Astro.site).toString(),
+    })),
+  },
+};
 ---
 <BaseLayout title="Dishwasher-safe answers by item" description="Browse dishwasher-safe guidance for common kitchen items, bottles, lids, cookware, and baby gear.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Items</span></nav>
   <section class="section">
     <div class="section-head"><h1>Dishwasher-safe answers by item</h1><p>Choose the thing you’re about to wash.</p></div>

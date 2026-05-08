@@ -8,10 +8,15 @@ const title = `Can you put ${item.name} in the dishwasher?`;
 const updatedLabel = 'Updated May 4, 2026';
 const description = `${item.shortAnswer} Includes rack placement, cycle, drying, and caveats.`;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
+const homeUrl = new URL('/', Astro.site).toString();
+const itemsUrl = new URL('/items/', Astro.site).toString();
+const itemUrl = new URL(`/items/${item.slug}/`, Astro.site).toString();
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}}]};
+const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};
+const structuredData = [faqSchema, breadcrumbSchema];
 ---
 <BaseLayout title={title} description={description}>
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/items/">Items</a><span aria-hidden="true">/</span><span aria-current="page">{item.name}</span></nav>
   <article class="section">
     <section class="answer-card">

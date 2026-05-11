@@ -9,8 +9,21 @@ const title = `Is ${material.name} dishwasher safe?`;
 const updatedLabel = 'Updated May 4, 2026';
 const description = material.shortAnswer;
 const verdictClass = material.defaultVerdict === 'top-rack' ? 'top-rack' : material.defaultVerdict;
+const homeUrl = new URL('/', Astro.site).toString();
+const materialsUrl = new URL('/materials/', Astro.site).toString();
+const materialUrl = new URL(`/materials/${material.slug}/`, Astro.site).toString();
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: homeUrl },
+    { '@type': 'ListItem', position: 2, name: 'Materials', item: materialsUrl },
+    { '@type': 'ListItem', position: 3, name: material.name, item: materialUrl },
+  ],
+};
 ---
 <BaseLayout title={title} description={description}>
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/materials/">Materials</a><span aria-hidden="true">/</span><span aria-current="page">{material.name}</span></nav>
   <article class="section">
     <section class="answer-card"><span class={`verdict ${verdictClass}`}>{verdictLabels[material.defaultVerdict]}</span><h1>{title}</h1><p class="answer-text">{material.shortAnswer}</p><p class="updated-line">{updatedLabel}</p></section>

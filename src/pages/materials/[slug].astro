@@ -21,9 +21,18 @@ const breadcrumbSchema = {
     { '@type': 'ListItem', position: 3, name: material.name, item: materialUrl },
   ],
 };
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    { '@type': 'Question', name: title, acceptedAnswer: { '@type': 'Answer', text: material.shortAnswer } },
+    { '@type': 'Question', name: `What should I watch before dishwashing ${material.name}?`, acceptedAnswer: { '@type': 'Answer', text: material.caveats.join(' ') } },
+  ],
+};
+const structuredData = [breadcrumbSchema, faqSchema];
 ---
 <BaseLayout title={title} description={description}>
-  <script type="application/ld+json" is:inline set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/materials/">Materials</a><span aria-hidden="true">/</span><span aria-current="page">{material.name}</span></nav>
   <article class="section">
     <section class="answer-card"><span class={`verdict ${verdictClass}`}>{verdictLabels[material.defaultVerdict]}</span><h1>{title}</h1><p class="answer-text">{material.shortAnswer}</p><p class="updated-line">{updatedLabel}</p></section>

@@ -40,6 +40,18 @@ Spin up a second SEO micro-site using the Laundry Settings pattern, but focused 
 - “Top rack or bottom rack?” pages
 - “Can I use heated dry?” pages
 
+## Search Console expansion: air fryer accessories
+
+Search Console started showing air-fryer-basket impressions in May 2026, so the first expansion pass adds a focused appliance-accessory cluster:
+
+- air fryer crisper plates
+- air fryer drawers
+- air fryer racks
+- air fryer silicone liners
+- Ninja air fryer baskets
+
+These pages stay conservative: the exact product manual is treated as the source of truth, especially when basket, drawer, tray, and crisper-plate instructions differ on the same model.
+
 ## Launch checklist
 
 - [x] Create repo/site scaffold

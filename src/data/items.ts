@@ -12,6 +12,8 @@ export type DishItem = {
   why: string;
   caveats: string[];
   materials: string[];
+  sourceNote?: string;
+  relatedSlugs?: string[];
 };
 
 export type Material = {
@@ -85,6 +87,58 @@ export const items: DishItem[] = [
     why: 'The safe answer depends on the exact removable part and coating: basket, drawer, tray, crisper plate, and rack instructions can differ even within the same air fryer. Dishwasher detergent and rack contact can wear nonstick coatings faster.',
     caveats: ['Never submerge or dishwash the powered air fryer body.', 'Avoid abrasive pads on nonstick baskets.', 'Check whether removable crisping plates, trays, racks, or drawers have separate instructions.'],
     materials: ['nonstick', 'stainless-steel'],
+    sourceNote: 'Use the care section in your air fryer manual as the final source. Manufacturers often approve one removable part while excluding another part from the same appliance.',
+    relatedSlugs: ['air-fryer-crisper-plate', 'air-fryer-drawer', 'air-fryer-rack', 'air-fryer-silicone-liner', 'ninja-air-fryer-basket'],
+  },
+  {
+    slug: 'air-fryer-crisper-plate', name: 'air fryer crisper plates', aliases: ['air fryer crisping plate', 'air fryer insert plate', 'air fryer grill plate'], verdict: 'depends',
+    shortAnswer: 'Some air fryer crisper plates are dishwasher safe, but nonstick-coated plates should be hand washed unless your manual clearly says the crisper plate can go in the dishwasher.',
+    placement: 'Top or bottom rack only if the manual allows it and the plate sits securely', cycle: 'Normal cycle only if labeled dishwasher safe', dry: 'Dry fully before putting it back in the basket',
+    why: 'Crisper plates often use nonstick coating and small rubber feet or bumpers. Dishwasher heat and rack contact can wear coatings and loosen small parts over time.',
+    caveats: ['Remove loose food before washing so crumbs do not bake onto the coating.', 'Check whether rubber feet or silicone bumpers should be removed first.', 'Hand wash if the coating is chipped, peeling, or already losing its slick feel.'],
+    materials: ['nonstick', 'silicone'],
+    sourceNote: 'Check the exact air fryer manual because basket, tray, and crisper-plate instructions are often listed separately.',
+    relatedSlugs: ['air-fryer-basket', 'air-fryer-drawer', 'air-fryer-rack'],
+  },
+  {
+    slug: 'air-fryer-drawer', name: 'air fryer drawers', aliases: ['air fryer drawer pan', 'air fryer bucket', 'air fryer pan'], verdict: 'depends',
+    shortAnswer: 'Air fryer drawers are dishwasher safe only when the manual says the removable drawer or pan is dishwasher safe. Hand wash nonstick drawers when the manual is unclear.',
+    placement: 'Bottom rack only if the drawer fits securely and is labeled dishwasher safe', cycle: 'Normal cycle if allowed; avoid sanitize unless the manual allows high heat', dry: 'Dry the drawer and handle area completely',
+    why: 'Drawers are larger removable parts with nonstick coating, handle hardware, seams, and sometimes rubber bumpers that may age faster in a dishwasher.',
+    caveats: ['Never put the powered air fryer base in the dishwasher.', 'Do not force a drawer into the rack where it can hit sprayer arms.', 'Hand wash if water can collect around handle seams.'],
+    materials: ['nonstick', 'plastic-lids'],
+    sourceNote: 'The manual is the deciding source here because drawer and basket care can differ by model.',
+    relatedSlugs: ['air-fryer-basket', 'air-fryer-crisper-plate', 'air-fryer-rack'],
+  },
+  {
+    slug: 'air-fryer-rack', name: 'air fryer racks', aliases: ['air fryer wire rack', 'air fryer skewer rack', 'air fryer dehydrator rack'], verdict: 'depends',
+    shortAnswer: 'Plain stainless steel air fryer racks are often dishwasher safe, but coated racks, skewer pieces, and accessories with plastic or silicone parts need manual-specific guidance.',
+    placement: 'Top or bottom rack if the rack is stainless and sits securely', cycle: 'Normal cycle if labeled dishwasher safe', dry: 'Dry promptly to prevent spots or rust on mixed-metal parts',
+    why: 'Racks are usually less coating-sensitive than baskets, but small accessories can trap food and may include coatings, welds, or handle pieces that are not dishwasher safe.',
+    caveats: ['Use a utensil basket for skewers or small rack pieces.', 'Hand wash coated or painted racks.', 'Check for rust after dishwashing lower-quality metal accessories.'],
+    materials: ['stainless-steel', 'nonstick'],
+    sourceNote: 'If the accessory came in an air fryer kit, check the accessory page or manual insert, not just the main basket instructions.',
+    relatedSlugs: ['air-fryer-basket', 'air-fryer-crisper-plate', 'air-fryer-silicone-liner'],
+  },
+  {
+    slug: 'air-fryer-silicone-liner', name: 'air fryer silicone liners', aliases: ['silicone air fryer basket liner', 'air fryer silicone pot'], verdict: 'top-rack',
+    shortAnswer: 'Most food-grade silicone air fryer liners are dishwasher safe on the top rack, but check the label and skip heated dry if the liner is thin or printed.',
+    placement: 'Top rack, secured so it does not flip and collect dirty water', cycle: 'Normal cycle if labeled dishwasher safe', dry: 'Air dry fully before storing',
+    why: 'Food-grade silicone usually tolerates dishwasher heat, but thin liners, printed markings, and attached handles can vary.',
+    caveats: ['Do not dishwash disposable paper liners.', 'Avoid folding the liner into a cup shape in the rack.', 'Replace silicone that stays sticky, smells burnt, or has cuts.'],
+    materials: ['silicone'],
+    sourceNote: 'Use the liner label or product care page for the final answer, especially for printed or collapsible liners.',
+    relatedSlugs: ['air-fryer-basket', 'air-fryer-rack', 'air-fryer-crisper-plate'],
+  },
+  {
+    slug: 'ninja-air-fryer-basket', name: 'Ninja air fryer baskets', aliases: ['Ninja air fryer tray', 'Ninja crisper plate', 'Ninja Foodi basket'], verdict: 'depends',
+    shortAnswer: 'Many Ninja air fryer baskets and crisper plates are dishwasher safe, but the answer depends on the exact Foodi or air fryer model. Check the model manual before dishwashing nonstick parts.',
+    placement: 'Dishwasher rack only if the manual allows that exact basket, tray, or crisper plate', cycle: 'Normal cycle if allowed by the model manual', dry: 'Dry completely before reinstalling',
+    why: 'Ninja uses different removable baskets, trays, plates, and multi-cooker parts across models, so the generic brand name is not enough to know the safe cleaning method.',
+    caveats: ['Never dishwash the cooker base or powered unit.', 'Check whether the crisper plate and basket have separate care instructions.', 'Hand wash to preserve nonstick coating if you are unsure.'],
+    materials: ['nonstick', 'stainless-steel', 'plastic-lids'],
+    sourceNote: 'Use the Ninja manual for the exact model number. Brand pages and retailer listings may not cover every removable accessory.',
+    relatedSlugs: ['air-fryer-basket', 'air-fryer-crisper-plate', 'air-fryer-drawer'],
   },
   {
     slug: 'nonstick-pans', name: 'nonstick pans', aliases: ['Teflon pan', 'nonstick skillet'], verdict: 'depends',

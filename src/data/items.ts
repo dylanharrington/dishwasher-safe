@@ -79,9 +79,9 @@ export const items: DishItem[] = [
     materials: ['plastic-lids', 'silicone', 'glass'],
   },
   {
-    slug: 'air-fryer-basket', name: 'air fryer baskets', aliases: ['air fryer tray', 'air fryer drawer', 'air fryer crisper plate'], verdict: 'depends',
-    shortAnswer: 'Some air fryer baskets are dishwasher safe, but many nonstick air fryer baskets should be hand washed unless the manual clearly says the basket, tray, or drawer can go in the dishwasher. Never put the powered air fryer body in the dishwasher.',
-    placement: 'Bottom rack only if manual allows; otherwise hand wash', cycle: 'Normal cycle only if labeled dishwasher safe', dry: 'Dry completely before reinstalling',
+    slug: 'air-fryer-basket', name: 'air fryer baskets and trays', aliases: ['air fryer tray', 'air fryer trays', 'air fryer drawer', 'air fryer crisper plate'], verdict: 'depends',
+    shortAnswer: 'Some air fryer baskets and trays are dishwasher safe, but many nonstick parts should be hand washed unless the manual clearly says the basket, tray, or drawer can go in the dishwasher. Never put the powered air fryer body in the dishwasher.',
+    placement: 'Bottom rack only if the manual allows the removable basket, tray, or drawer; otherwise hand wash', cycle: 'Normal cycle only if labeled dishwasher safe', dry: 'Dry completely before reinstalling',
     why: 'The safe answer depends on the exact removable part and coating: basket, drawer, tray, crisper plate, and rack instructions can differ even within the same air fryer. Dishwasher detergent and rack contact can wear nonstick coatings faster.',
     caveats: ['Never submerge or dishwash the powered air fryer body.', 'Avoid abrasive pads on nonstick baskets.', 'Check whether removable crisping plates, trays, racks, or drawers have separate instructions.'],
     materials: ['nonstick', 'stainless-steel'],

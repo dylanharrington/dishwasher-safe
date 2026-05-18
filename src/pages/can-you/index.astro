@@ -2,8 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { items, verdictLabels } from '../../data/items';
+
+const canYouUrl = new URL('/can-you/', Astro.site).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Can you put it in the dishwasher?',
+  url: canYouUrl,
+  description: 'Yes/no dishwasher-safe answers for bottles, cookware, lids, baby gear, and kitchen items.',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: `Can you put ${item.name} in the dishwasher?`,
+      url: new URL(`/can-you/${item.slug}/`, Astro.site).toString(),
+    })),
+  },
+};
 ---
 <BaseLayout title="Can you put it in the dishwasher?" description="Yes/no dishwasher-safe answers for bottles, cookware, lids, baby gear, and kitchen items.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Can you?</span></nav>
   <section class="section">
     <div class="section-head"><h1>Can you put it in the dishwasher?</h1><p>Question-shaped pages for quick answers.</p></div>

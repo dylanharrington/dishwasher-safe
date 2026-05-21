@@ -15,7 +15,10 @@ const relatedItems = (item.relatedSlugs ?? [])
   .map((slug) => findItem(slug))
   .filter(Boolean);
 const extraFaqs = item.slug === 'air-fryer-basket'
-  ? [{ question: 'Can you put an air fryer itself in the dishwasher?', answer: 'No. Only removable baskets, trays, crisper plates, drawers, or racks can go in the dishwasher, and only when the manual says that exact part is dishwasher safe. Never put the powered air fryer body in the dishwasher.' }]
+  ? [
+    { question: 'Are air fryer trays dishwasher safe?', answer: 'Some removable air fryer trays are dishwasher safe, but only when the manual says that exact tray, crisper plate, or drawer can go in the dishwasher. Hand wash nonstick trays when the manual is unclear.' },
+    { question: 'Can you put an air fryer itself in the dishwasher?', answer: 'No. Only removable baskets, trays, crisper plates, drawers, or racks can go in the dishwasher, and only when the manual says that exact part is dishwasher safe. Never put the powered air fryer body in the dishwasher.' },
+  ]
   : [];
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}},...extraFaqs.map((faq)=>({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))]};
 const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};

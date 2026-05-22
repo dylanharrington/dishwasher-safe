@@ -16,7 +16,7 @@ const schema = {
       '@type': 'ListItem',
       position: index + 1,
       name: `Can you put ${item.name} in the dishwasher?`,
-      url: new URL(`/can-you/${item.slug}/`, Astro.site).toString(),
+      url: new URL(`/items/${item.slug}/`, Astro.site).toString(),
     })),
   },
 };
@@ -28,7 +28,7 @@ const schema = {
     <div class="section-head"><h1>Can you put it in the dishwasher?</h1><p>Question-shaped pages for quick answers.</p></div>
     <div class="grid">
       {items.map((item)=>(
-        <a class="card" href={`/can-you/${item.slug}/`}><span class="icon-badge"><Icon name="rack" /></span><strong>Can you put {item.name} in the dishwasher?</strong><p><span class="chip">{verdictLabels[item.verdict]}</span></p><p>{item.shortAnswer}</p></a>
+        <a class="card" href={`/items/${item.slug}/`}><span class="icon-badge"><Icon name="rack" /></span><strong>Can you put {item.name} in the dishwasher?</strong><p><span class="chip">{verdictLabels[item.verdict]}</span></p><p>{item.shortAnswer}</p></a>
       ))}
     </div>
   </section>

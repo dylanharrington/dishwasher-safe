@@ -5,6 +5,7 @@ import { findItem, items, verdictLabels, findMaterial } from '../../data/items';
 export function getStaticPaths(){ return items.map((item)=>({ params:{ slug:item.slug }})); }
 const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not found');
 const title = `Can you put ${item.name} in the dishwasher?`;
+const updatedDate = '2026-05-04';
 const updatedLabel = 'Updated May 4, 2026';
 const description = `${item.shortAnswer} Includes rack placement, cycle, drying, and caveats.`;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
@@ -23,7 +24,21 @@ const extraFaqs = item.slug === 'air-fryer-basket'
   : [];
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}},...extraFaqs.map((faq)=>({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))]};
 const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};
-const structuredData = [faqSchema, breadcrumbSchema];
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  mainEntityOfPage: itemUrl,
+  dateModified: updatedDate,
+  inLanguage: 'en-US',
+  isAccessibleForFree: true,
+  about: [
+    { '@type': 'Thing', name: item.name },
+    ...item.materials.map((slug) => ({ '@type': 'Thing', name: findMaterial(slug)?.name ?? slug })),
+  ],
+};
+const structuredData = [faqSchema, breadcrumbSchema, articleSchema];
 ---
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />

@@ -29,6 +29,7 @@ const articleSchema = {
   '@type': 'Article',
   headline: title,
   description,
+  ...(item.aliases ? { alternateName: item.aliases } : {}),
   mainEntityOfPage: itemUrl,
   dateModified: updatedDate,
   inLanguage: 'en-US',

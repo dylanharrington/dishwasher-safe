@@ -22,6 +22,7 @@ const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:
       <div class="tiles"><div class="tile"><span class="tile-label">Rack</span><span class="tile-value">{item.placement}</span></div><div class="tile"><span class="tile-label">Cycle</span><span class="tile-value">{item.cycle}</span></div><div class="tile"><span class="tile-label">Drying</span><span class="tile-value">{item.dry}</span></div></div>
     </section>
     <section class="section"><h2><Icon name="warning" /> What to watch</h2><ul class="caveats">{item.caveats.map((c)=><li><Icon name="warning" /><span>{c}</span></li>)}</ul></section>
+    {item.sourceNote && <section class="section"><h2>Source note</h2><p>{item.sourceNote}</p></section>}
     <p><a class="link-card" href={`/items/${item.slug}/`}>Full dishwasher-safe guide for {item.name}<Icon name="arrow" /></a></p>
   </article>
 </BaseLayout>

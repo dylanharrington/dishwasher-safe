@@ -33,7 +33,7 @@ export const verdictLabels: Record<Verdict, string> = {
 
 export const items: DishItem[] = [
   {
-    slug: 'hydro-flask', name: 'Hydro Flask bottles', aliases: ['insulated water bottle', 'stainless steel bottle'], verdict: 'depends',
+    slug: 'hydro-flask', name: 'Hydro Flask bottles and caps', aliases: ['Hydro Flask caps', 'Hydro Flask lids', 'insulated water bottle', 'stainless steel bottle'], verdict: 'depends',
     shortAnswer: 'Many newer Hydro Flask bottles are dishwasher safe, but older bottles and some caps should be hand washed unless the label says dishwasher safe.',
     placement: 'Top rack for caps and lids; bottle position depends on manufacturer guidance', cycle: 'Normal cycle if labeled dishwasher safe', dry: 'Air dry fully with cap off',
     why: 'Insulated bottles can have coatings, seals, and powder finishes that vary by model and age.',

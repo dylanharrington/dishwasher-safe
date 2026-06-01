@@ -2,8 +2,37 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
 import { items, materials, verdictLabels } from '../data/items';
+
+const homeUrl = new URL('/', Astro.site).toString();
+const popularItems = items.slice(0, 12);
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dishwasher Safe?',
+    url: homeUrl,
+    description: 'Fast dishwasher-safe answers for common kitchen items.',
+    inLanguage: 'en-US',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Dishwasher-safe guides',
+    url: homeUrl,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: popularItems.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        url: new URL(`/items/${item.slug}/`, Astro.site).toString(),
+      })),
+    },
+  },
+];
 ---
 <BaseLayout title="Dishwasher Safe? Fast yes/no answers" description="Find out whether common kitchen items can go in the dishwasher, where to put them, and what to avoid.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <section class="hero">
     <div class="eyebrow"><span class="dot"></span> Direct dishwasher answers</div>
     <h1>Can this go in the <em>dishwasher?</em></h1>
@@ -14,7 +43,7 @@ import { items, materials, verdictLabels } from '../data/items';
   <section class="section">
     <div class="section-head"><h2>Popular items</h2><p>Fast answers for the searches people make while standing at the sink.</p></div>
     <div class="grid">
-      {items.slice(0, 12).map((item) => (
+      {popularItems.map((item) => (
         <a class="card" href={`/items/${item.slug}/`}>
           <span class="icon-badge"><Icon name="dishwasher" /></span>
           <strong>{item.name}</strong>

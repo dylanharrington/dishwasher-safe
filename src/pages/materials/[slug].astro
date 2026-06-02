@@ -6,6 +6,7 @@ export function getStaticPaths(){ return materials.map((material)=>({ params:{ s
 const material = findMaterial(Astro.params.slug!); if(!material) throw new Error('Material not found');
 const related = itemsForMaterial(material.slug);
 const title = `Is ${material.name} dishwasher safe?`;
+const updatedDate = '2026-05-04';
 const updatedLabel = 'Updated May 4, 2026';
 const description = material.shortAnswer;
 const verdictClass = material.defaultVerdict === 'top-rack' ? 'top-rack' : material.defaultVerdict;
@@ -29,7 +30,18 @@ const faqSchema = {
     { '@type': 'Question', name: `What should I watch before dishwashing ${material.name}?`, acceptedAnswer: { '@type': 'Answer', text: material.caveats.join(' ') } },
   ],
 };
-const structuredData = [breadcrumbSchema, faqSchema];
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  mainEntityOfPage: materialUrl,
+  dateModified: updatedDate,
+  inLanguage: 'en-US',
+  isAccessibleForFree: true,
+  about: { '@type': 'Thing', name: material.name },
+};
+const structuredData = [breadcrumbSchema, faqSchema, articleSchema];
 ---
 <BaseLayout title={title} description={description}>
   <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />

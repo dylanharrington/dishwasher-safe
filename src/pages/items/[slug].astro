@@ -26,6 +26,12 @@ const extraFaqs = item.slug === 'air-fryer-basket'
     { question: 'Are Hydro Flask caps dishwasher safe?', answer: 'Some Hydro Flask caps and lids are dishwasher safe on the top rack, but cap style matters. Check the exact cap care instructions, remove any loose gasket or straw parts if the manufacturer says to, and air dry everything fully before reassembling.' },
     { question: 'Should older Hydro Flask bottles go in the dishwasher?', answer: 'Hand wash older Hydro Flask bottles unless the bottom stamp or model guidance clearly says dishwasher safe. Older finishes and coatings may not tolerate dishwasher detergent and heat as well as current dishwasher-safe models.' },
   ]
+  : item.slug === 'pet-bowls'
+  ? [
+    { question: 'Are stainless steel dog bowls dishwasher safe?', answer: 'Yes, most plain stainless steel dog bowls are dishwasher safe. Use the normal or sanitize cycle and dry completely before the next use.' },
+    { question: 'Are plastic dog bowls dishwasher safe?', answer: 'Plastic dog bowls are only dishwasher safe if the label says so. Place dishwasher-safe plastic bowls on the top rack to reduce warping from heat.' },
+    { question: 'Can you put cat bowls in the dishwasher?', answer: 'Most stainless steel and ceramic cat bowls are dishwasher safe. Check plastic cat bowls for a dishwasher-safe label, and always dry bowls completely before use.' },
+  ]
   : [];
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}},...extraFaqs.map((faq)=>({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))]};
 const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};

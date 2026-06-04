@@ -49,6 +49,7 @@ const articleSchema = {
     { '@type': 'Thing', name: item.name },
     ...item.materials.map((slug) => ({ '@type': 'Thing', name: findMaterial(slug)?.name ?? slug })),
   ],
+  ...(relatedItems.length > 0 ? { mentions: relatedItems.map((related) => ({ '@type': 'Thing', name: related!.name })) } : {}),
 };
 const structuredData = [faqSchema, breadcrumbSchema, articleSchema];
 ---

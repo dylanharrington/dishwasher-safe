@@ -1,10 +1,24 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Icon from '../components/Icon.astro';
-import { items, materials, verdictLabels } from '../data/items';
+import { findItem, materials, verdictLabels, type DishItem } from '../data/items';
 
 const homeUrl = new URL('/', Astro.site).toString();
-const popularItems = items.slice(0, 12);
+const popularItemSlugs = [
+  'air-fryer-basket',
+  'hydro-flask',
+  'cutting-boards-plastic',
+  'pet-bowls',
+  'wooden-spoons',
+  'kitchen-knives',
+  'baby-bottles',
+  'silicone-bibs',
+  'nonstick-pans',
+  'cast-iron-skillet',
+  'yeti-cups',
+  'food-storage-containers',
+];
+const popularItems = popularItemSlugs.map((slug) => findItem(slug)).filter((item): item is DishItem => Boolean(item));
 const schema = [
   {
     '@context': 'https://schema.org',

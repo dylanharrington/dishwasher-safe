@@ -2,8 +2,27 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
 import { materials, verdictLabels } from '../../data/items';
+
+const materialsUrl = new URL('/materials/', Astro.site).toString();
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Dishwasher-safe materials',
+  url: materialsUrl,
+  description: 'Dishwasher guidance for stainless steel, silicone, wood, glass, plastic, nonstick, cast iron, and ceramic.',
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: materials.map((material, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: material.name,
+      url: new URL(`/materials/${material.slug}/`, Astro.site).toString(),
+    })),
+  },
+};
 ---
 <BaseLayout title="Dishwasher-safe materials" description="Dishwasher guidance for stainless steel, silicone, wood, glass, plastic, nonstick, cast iron, and ceramic.">
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Materials</span></nav>
   <section class="section">
     <div class="section-head"><h1>Dishwasher-safe materials</h1><p>General rules by material, with exceptions.</p></div>

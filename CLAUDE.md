@@ -11,7 +11,9 @@ Vercel from `main` on GitHub (`dylanharrington/dishwasher-safe`).
 - Launched 2026-04-29
 - Analytics CSVs: `../analytics/dishwasher-safe/` (only present when this repo
   lives at `/Users/dylan/code/microsites/`; if missing, ask Dylan). Read
-  `../analytics/MANIFEST.md` for export date and caveats before using.
+  `../analytics/MANIFEST.md` for export date and caveats before using. If the
+  export is more than ~7 days old, ask Dylan to refresh it — give him the
+  ready-to-paste OC prompt from `../CLAUDE.md` ("Refresh prompt" section).
 
 ## Self-improvement loop
 

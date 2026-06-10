@@ -15,5 +15,9 @@
     "astro": "latest",
     "typescript": "latest"
   },
-  "devDependencies": {}
+  "overrides": {
+    "yaml-language-server": {
+      "yaml": ">=2.8.3"
+    }
+  }
 }

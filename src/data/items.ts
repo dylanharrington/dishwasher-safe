@@ -4,6 +4,10 @@ export type DishItem = {
   slug: string;
   name: string;
   aliases?: string[];
+  /** Overrides the default "Can you put {name} in the dishwasher?" title/H1 to match exact query phrasing. */
+  question?: string;
+  /** Overrides the site-wide default updated date on the item page. ISO date. */
+  updated?: string;
   verdict: Verdict;
   shortAnswer: string;
   placement: string;
@@ -65,8 +69,10 @@ export const items: DishItem[] = [
     materials: ['stainless-steel', 'wood', 'plastic-lids'],
   },
   {
-    slug: 'silicone-bibs', name: 'silicone baby bibs', aliases: ['baby bib', 'silicone bib'], verdict: 'top-rack',
-    shortAnswer: 'Most silicone baby bibs can go on the top rack if the label says dishwasher safe. Use normal wash and skip high heat if the bib feels flimsy.',
+    slug: 'silicone-bibs', name: 'silicone bibs', aliases: ['silicone baby bibs', 'baby bib', 'silicone bib', 'baby bibs'], verdict: 'top-rack',
+    question: 'Can silicone bibs go in the dishwasher?',
+    updated: '2026-06-10',
+    shortAnswer: 'Yes — most silicone bibs can go in the dishwasher on the top rack. Use a normal or gentle cycle, skip heated dry if the bib feels thin or flimsy, and check the label first if the bib has fabric trim or printed designs.',
     placement: 'Top rack', cycle: 'Normal or gentle cycle', dry: 'Air dry',
     why: 'Food-grade silicone usually tolerates dishwasher heat, but thin straps and printed designs vary.',
     caveats: ['Check for fabric trim, snaps, or printed decorations.', 'Secure bibs so they do not fold into a cup shape and hold dirty water.', 'Hand wash if the label says no heated dry.'],

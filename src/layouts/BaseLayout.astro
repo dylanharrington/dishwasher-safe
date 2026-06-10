@@ -1,4 +1,5 @@
 ---
+import Icon from '../components/Icon.astro';
 const { title = 'Dishwasher Safe?', description = 'Fast answers for what can and cannot go in the dishwasher.', canonical: canonicalOverride, canonicalPath, noindex = false } = Astro.props;
 const canonical = canonicalOverride ?? new URL(canonicalPath ?? Astro.url.pathname, Astro.site).toString();
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
@@ -24,17 +25,179 @@ const isCurrentNav = (href: string) => currentPath === href || currentPath.start
     <link rel="canonical" href={canonical} />
     {noindex && <meta name="robots" content="noindex,follow" />}
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <meta name="theme-color" content="#F7F7F2" />
+    <meta name="theme-color" content="#F4F0E6" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=IBM+Plex+Mono:wght@500;600&family=Libre+Franklin:wght@400;500;600;700&display=swap" rel="stylesheet" />
     {shouldShowGoogleVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
     {shouldLoadGA && (<><script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script><script is:inline define:vars={{ gaMeasurementId }}>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config',gaMeasurementId);</script></>)}
     <style is:global>
-      :root{--cream:#F7F7F2;--cream-2:#EAF4F1;--ink:#13243A;--muted:#5C6B7A;--line:#DDE5E1;--paper:#fff;--accent-teal:#2B8C7E;--accent-teal-tint:#D8EFEA;--accent-gold:#F0A34A;--accent-gold-tint:#FCEBCC;--danger:#B9543B;--radius:16px;--shadow:0 14px 36px rgba(19,36,58,.08);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color-scheme:light}
-      *{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}a:hover{color:var(--accent-teal)}p,h1,h2,h3{margin:0}svg{display:block}.page{min-height:100vh;background:radial-gradient(900px 280px at 50% -120px,#D9ECE8,transparent 65%),var(--cream)}.skip-link{position:absolute;left:18px;top:10px;z-index:10;transform:translateY(-150%);padding:9px 13px;border:1px solid var(--ink);border-radius:999px;background:var(--paper);font-size:13px;font-weight:800;box-shadow:var(--shadow)}.skip-link:focus{transform:translateY(0)}#main-content:focus{outline:none}.site-header,.site-footer,main{max-width:980px;margin:0 auto}.site-header{padding:18px 20px 8px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}.brand-mark{width:38px;height:38px;border:2px solid var(--ink);background:var(--paper);border-radius:12px;display:grid;place-items:center;box-shadow:0 3px 0 rgba(19,36,58,.08)}.brand span span{color:var(--accent-teal)}.nav{display:flex;gap:4px;flex-wrap:wrap}.nav a{font-size:14px;color:var(--muted);font-weight:650;padding:8px 12px;border-radius:999px}.nav a:hover,.nav a[aria-current="page"]{background:var(--paper);color:var(--ink)}main{padding:16px 20px 64px;display:flex;flex-direction:column;gap:36px}.site-footer{padding:24px 20px 36px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}.breadcrumbs{display:flex;gap:6px;flex-wrap:wrap;color:var(--muted);font-size:13px}.hero{padding:42px 0 20px;display:grid;gap:16px}.eyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent-teal);font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.08em}.dot{width:9px;height:9px;border-radius:50%;background:var(--accent-gold)}.hero h1{font-size:clamp(38px,7vw,72px);letter-spacing:-.05em;line-height:.94;max-width:760px}.hero h1 em{font-style:normal;color:var(--accent-teal)}.hero p{font-size:clamp(17px,2vw,21px);line-height:1.55;color:var(--muted);max-width:680px}.pills{display:flex;gap:8px;flex-wrap:wrap}.pills span,.chip{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:7px 11px;font-size:13px;font-weight:650;color:var(--muted)}.section{display:grid;gap:15px}.section-head{display:grid;gap:4px}.section h1,.section h2{font-size:clamp(23px,3vw,31px);letter-spacing:-.025em}.section-head p,.section>p{color:var(--muted);line-height:1.55}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(245px,1fr));gap:12px}.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);padding:16px;display:grid;gap:10px;box-shadow:0 1px 0 rgba(19,36,58,.03);transition:.18s}.card:hover{transform:translateY(-2px);box-shadow:var(--shadow);border-color:var(--ink)}.card strong{font-size:18px;letter-spacing:-.01em}.card p{color:var(--muted);font-size:14px;line-height:1.48}.icon-badge{width:52px;height:52px;border-radius:15px;background:var(--accent-teal-tint);display:grid;place-items:center;color:var(--ink)}.answer-card{background:var(--ink);color:var(--cream);border-radius:24px;padding:clamp(22px,4vw,34px);display:grid;gap:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}.answer-card::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:14px 14px;pointer-events:none}.answer-card>*{position:relative}.verdict{display:inline-flex;width:max-content;align-items:center;gap:8px;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:800;background:rgba(255,255,255,.1)}.verdict.yes,.verdict.top-rack{background:var(--accent-teal-tint);color:var(--ink)}.verdict.no{background:#F8DDD5;color:var(--ink)}.verdict.depends{background:var(--accent-gold-tint);color:var(--ink)}.answer-card h1{font-size:clamp(30px,5vw,48px);line-height:1;letter-spacing:-.04em}.answer-text{font-size:clamp(17px,2vw,20px);line-height:1.55;color:rgba(247,247,242,.9);max-width:72ch}.updated-line{font-size:13px;color:rgba(247,247,242,.68);font-weight:700;letter-spacing:.01em}.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.tile{background:var(--paper);color:var(--ink);border-radius:16px;padding:14px;display:grid;gap:5px}.tile-label{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}.tile-value{font-weight:800;line-height:1.25}.caveats{list-style:none;margin:0;padding:0;display:grid;gap:8px}.caveats li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;background:var(--paper);border:1px solid var(--line);border-left:4px solid var(--accent-gold);border-radius:14px;padding:14px;color:var(--muted);line-height:1.5}.link-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}.link-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:750}.faq details{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-top:8px}.faq summary{font-weight:800;cursor:pointer}.faq p{margin-top:10px;color:var(--muted);line-height:1.55}@media(max-width:640px){.tiles{grid-template-columns:1fr}.hero{padding-top:28px}.site-header{align-items:flex-start}}
+      :root{
+        --paper:#F4F0E6;
+        --paper-2:#FDFBF4;
+        --ink:#1D2A38;
+        --muted:#5E6A75;
+        --line:#E2DBC9;
+        --accent:#2B59C3;
+        --accent-tint:#DEE6F8;
+        --accent-warm:#D9772F;
+        --accent-warm-tint:#F8E7CE;
+        --ok-ink:#2F7A4D;--ok-tint:#DBEEDF;
+        --rack-ink:#2B59C3;--rack-tint:#DEE6F8;
+        --bad-ink:#B6452C;--bad-tint:#F7DFD5;
+        --warn-ink:#92660D;--warn-tint:#F6E9C7;
+        --display:'Fraunces',Georgia,serif;
+        --body:'Libre Franklin',ui-sans-serif,sans-serif;
+        --mono:'IBM Plex Mono',ui-monospace,monospace;
+        --radius:12px;
+        --shadow-hard:4px 4px 0 rgba(29,42,56,.10);
+        --shadow-hover:7px 7px 0 rgba(43,89,195,.20);
+        color-scheme:light;
+      }
+      *{box-sizing:border-box}
+      body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+      a{color:inherit;text-decoration:none}
+      a:hover{color:var(--accent)}
+      p,h1,h2,h3{margin:0}
+      svg{display:block}
+      ::selection{background:var(--accent);color:#fff}
+      :focus-visible{outline:2.5px solid var(--accent);outline-offset:2px;border-radius:3px}
+
+      /* Page atmosphere: faint kitchen-tile grid + cool wash + paper grain */
+      .page{
+        min-height:100vh;
+        background-image:
+          radial-gradient(860px 340px at 50% -160px,rgba(43,89,195,.09),transparent 70%),
+          linear-gradient(rgba(29,42,56,.045) 1px,transparent 1px),
+          linear-gradient(90deg,rgba(29,42,56,.045) 1px,transparent 1px);
+        background-size:auto,34px 34px,34px 34px;
+      }
+      .page::after{content:'';position:fixed;inset:0;pointer-events:none;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+      .skip-link{position:absolute;left:18px;top:10px;z-index:10;transform:translateY(-150%);padding:9px 13px;border:2px solid var(--ink);border-radius:8px;background:var(--paper-2);font-size:13px;font-weight:700;box-shadow:var(--shadow-hard)}
+      .skip-link:focus{transform:translateY(0)}
+      #main-content:focus{outline:none}
+
+      .site-header,.site-footer,main{max-width:1000px;margin:0 auto}
+      .site-header{padding:20px 20px 10px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+      .brand{display:flex;align-items:center;gap:11px;font-family:var(--display);font-weight:700;font-size:21px;letter-spacing:-.01em}
+      .brand-mark{width:42px;height:42px;border:2px solid var(--ink);background:var(--paper-2);border-radius:10px;display:grid;place-items:center;box-shadow:3px 3px 0 rgba(29,42,56,.16);transition:transform .18s ease}
+      .brand:hover .brand-mark{transform:rotate(-6deg)}
+      .brand span span{color:var(--accent);font-style:italic}
+      .nav{display:flex;gap:2px;flex-wrap:wrap}
+      .nav a{font-family:var(--mono);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);padding:8px 11px;border-radius:7px;border:1.5px solid transparent}
+      .nav a:hover{color:var(--ink);border-color:var(--ink)}
+      .nav a[aria-current="page"]{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
+
+      main{padding:18px 20px 72px;display:flex;flex-direction:column;gap:40px}
+      .site-footer{padding:22px 20px 40px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--muted)}
+      .site-footer a{text-decoration:underline;text-underline-offset:3px}
+
+      .breadcrumbs{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
+      .breadcrumbs a:hover{color:var(--accent)}
+
+      /* Hero */
+      .hero{padding:44px 0 14px;display:grid;gap:18px}
+      .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent-warm);font-family:var(--mono);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.12em}
+      .dot{width:9px;height:9px;background:var(--accent-warm);transform:rotate(45deg)}
+      .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(42px,7.5vw,82px);letter-spacing:-.025em;line-height:.97;max-width:800px}
+      .hero h1 em{font-style:italic;color:var(--accent)}
+      .hero p{font-size:clamp(16px,2vw,19px);line-height:1.6;color:var(--muted);max-width:640px}
+      .pills{display:flex;gap:8px;flex-wrap:wrap}
+      .pills span{background:var(--paper-2);border:1.5px solid var(--ink);border-radius:7px;padding:7px 11px 6px;font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ink);box-shadow:2px 2px 0 rgba(29,42,56,.10)}
+
+      /* Sections */
+      .section{display:grid;gap:16px}
+      .section-head{display:grid;gap:6px}
+      .section h2{font-family:var(--display);font-weight:600;font-size:clamp(23px,3vw,31px);letter-spacing:-.015em;display:flex;align-items:center;gap:10px}
+      .section-head h1{font-family:var(--display);font-weight:700;font-size:clamp(32px,5vw,46px);letter-spacing:-.02em;line-height:1.05}
+      .section-head p,.section>p{color:var(--muted);line-height:1.6}
+
+      /* Cards */
+      .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+      .card{background:var(--paper-2);border:1.5px solid var(--ink);border-radius:var(--radius);padding:18px;display:grid;gap:10px;align-content:start;box-shadow:var(--shadow-hard);transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease}
+      .card:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover);border-color:var(--accent);color:inherit}
+      .card strong{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em;line-height:1.25}
+      .card p{color:var(--muted);font-size:14px;line-height:1.55}
+      .icon-badge{width:48px;height:48px;border-radius:9px;border:1.5px solid var(--ink);background:var(--accent-tint);display:grid;place-items:center;color:var(--ink)}
+
+      /* Chips (verdict tags on list cards) */
+      .chip{display:inline-block;border:1.5px solid currentColor;border-radius:5px;padding:4px 8px 3px;font-family:var(--mono);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--ink);background:var(--paper)}
+      .chip.v-yes{color:var(--ok-ink);background:var(--ok-tint)}
+      .chip.v-top-rack{color:var(--rack-ink);background:var(--rack-tint)}
+      .chip.v-no{color:var(--bad-ink);background:var(--bad-tint)}
+      .chip.v-depends{color:var(--warn-ink);background:var(--warn-tint)}
+
+      /* Answer card: the spec sheet */
+      .answer-card{background:var(--paper-2);color:var(--ink);border:2px solid var(--ink);border-radius:16px;padding:clamp(24px,4.5vw,42px);padding-top:clamp(32px,5vw,50px);display:grid;gap:18px;box-shadow:8px 8px 0 rgba(29,42,56,.12);position:relative;overflow:hidden}
+      .answer-card::before{content:'';position:absolute;inset:0 0 auto 0;height:10px;background:repeating-linear-gradient(90deg,var(--ink) 0 1.5px,transparent 1.5px 12px);opacity:.22}
+      .answer-card h1{font-family:var(--display);font-weight:700;font-size:clamp(30px,4.6vw,48px);line-height:1.02;letter-spacing:-.025em;max-width:21ch}
+      .answer-text{font-size:clamp(16px,2vw,19px);line-height:1.6;color:#3D4956;max-width:70ch}
+      .updated-line{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+
+      /* The verdict stamp */
+      .verdict{display:inline-flex;width:max-content;align-items:center;gap:8px;padding:9px 14px 8px;border:2px solid currentColor;outline:1.5px solid currentColor;outline-offset:3px;border-radius:5px;font-family:var(--mono);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.13em;color:var(--ink);background:var(--paper);transform:rotate(-2deg);margin:4px 6px 2px 4px}
+      .verdict.yes{color:var(--ok-ink);background:var(--ok-tint)}
+      .verdict.top-rack{color:var(--rack-ink);background:var(--rack-tint)}
+      .verdict.no{color:var(--bad-ink);background:var(--bad-tint)}
+      .verdict.depends{color:var(--warn-ink);background:var(--warn-tint)}
+
+      /* Spec rows: rack / cycle / drying */
+      .tiles{display:grid;grid-template-columns:repeat(3,1fr);border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--paper-2)}
+      .tile{padding:14px 16px;display:grid;gap:5px;align-content:start}
+      .tile + .tile{border-left:1.5px dashed rgba(29,42,56,.35)}
+      .tile-label{font-family:var(--mono);font-size:10.5px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+      .tile-value{font-weight:600;font-size:15px;line-height:1.4}
+
+      /* Caveats */
+      .caveats{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+      .caveats li{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;background:var(--paper-2);border:1.5px solid var(--line);border-left:5px solid var(--accent-warm);border-radius:10px;padding:13px 15px;color:#444F5B;line-height:1.55;font-size:15px}
+      .caveats li svg{color:var(--accent-warm);margin-top:2px}
+
+      /* Link rows */
+      .link-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+      .link-card{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;background:var(--paper-2);border:1.5px solid var(--ink);border-radius:10px;padding:14px 16px;font-weight:600;box-shadow:3px 3px 0 rgba(29,42,56,.08);transition:transform .16s ease,box-shadow .16s ease}
+      .link-card:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover)}
+      .link-card svg{transition:transform .16s ease}
+      .link-card:hover svg{transform:translateX(4px)}
+
+      /* FAQ */
+      .faq details{background:var(--paper-2);border:1.5px solid var(--ink);border-radius:10px;margin-top:10px;box-shadow:3px 3px 0 rgba(29,42,56,.07)}
+      .faq summary{padding:14px 16px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+      .faq summary::-webkit-details-marker{display:none}
+      .faq summary::after{content:'+';font-family:var(--mono);font-size:19px;font-weight:600;color:var(--accent);line-height:1;transition:transform .18s ease;flex-shrink:0}
+      .faq details[open] summary::after{transform:rotate(45deg)}
+      .faq details p{padding:0 16px 15px;color:var(--muted);line-height:1.6}
+
+      /* Motion */
+      @media (prefers-reduced-motion:no-preference){
+        main>*:not(article),article.section>*{animation:rise .5s ease both}
+        main>*:nth-child(2),article.section>*:nth-child(2){animation-delay:.07s}
+        main>*:nth-child(3),article.section>*:nth-child(3){animation-delay:.14s}
+        main>*:nth-child(4),article.section>*:nth-child(4){animation-delay:.21s}
+        main>*:nth-child(n+5),article.section>*:nth-child(n+5){animation-delay:.28s}
+        .answer-card .verdict{animation:stamp .55s cubic-bezier(.2,.85,.3,1.3) .25s backwards}
+        @keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+        @keyframes stamp{
+          0%{opacity:0;transform:rotate(-15deg) scale(1.9)}
+          55%{opacity:1;transform:rotate(-2deg) scale(.94)}
+          78%{transform:rotate(-2deg) scale(1.04)}
+          100%{transform:rotate(-2deg) scale(1)}
+        }
+      }
+
+      @media (max-width:640px){
+        .tiles{grid-template-columns:1fr}
+        .tile + .tile{border-left:0;border-top:1.5px dashed rgba(29,42,56,.35)}
+        .site-header{align-items:flex-start}
+        .hero{padding-top:26px}
+        main{gap:32px}
+      }
     </style>
   </head>
-  <body><div class="page"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Dishwasher Safe home"><span class="brand-mark" aria-hidden="true">↯</span><span>Dishwasher <span>Safe?</span></span></a><nav class="nav" aria-label="Primary">{navItems.map((item) => <a href={item.href} aria-current={isCurrentNav(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav></header><main id="main-content" tabindex="-1"><slot /></main><footer class="site-footer">Dishwasher Safe? gives general household guidance. Always follow the manufacturer’s care instructions for your exact item. <a href="/privacy/">Privacy</a>.</footer></div></body>
+  <body><div class="page"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Dishwasher Safe home"><span class="brand-mark"><Icon name="dishwasher" /></span><span>Dishwasher <span>Safe?</span></span></a><nav class="nav" aria-label="Primary">{navItems.map((item) => <a href={item.href} aria-current={isCurrentNav(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav></header><main id="main-content" tabindex="-1"><slot /></main><footer class="site-footer">Dishwasher Safe? gives general household guidance. Always follow the manufacturer’s care instructions for your exact item. <a href="/privacy/">Privacy</a>.</footer></div></body>
 </html>

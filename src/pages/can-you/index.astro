@@ -28,7 +28,7 @@ const schema = {
     <div class="section-head"><h1>Can you put it in the dishwasher?</h1><p>Question-shaped pages for quick answers.</p></div>
     <div class="grid">
       {items.map((item)=>(
-        <a class="card" href={`/items/${item.slug}/`}><span class="icon-badge"><Icon name="rack" /></span><strong>Can you put {item.name} in the dishwasher?</strong><p><span class="chip">{verdictLabels[item.verdict]}</span></p><p>{item.shortAnswer}</p></a>
+        <a class="card" href={`/items/${item.slug}/`}><span class="icon-badge"><Icon name="rack" /></span><strong>Can you put {item.name} in the dishwasher?</strong><p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p><p>{item.shortAnswer}</p></a>
       ))}
     </div>
   </section>

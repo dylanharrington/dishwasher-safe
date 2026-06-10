@@ -4,6 +4,22 @@ Newest entry first. Each Claude session appends an entry per the loop in
 `CLAUDE.md`. Entry format: date, what changed, hypothesis, what to check in the
 next analytics dump, updated backlog.
 
+## 2026-06-10 (later) — Site-wide design refresh (Dylan-requested, not a backlog item)
+
+**What changed:** Full visual redesign in `BaseLayout.astro` (global stylesheet
+rewrite), same content/URLs/structured data. "Appliance manual" direction:
+porcelain paper + faint tile-grid background, ink-blue text, hard offset print
+shadows, Fraunces/Libre Franklin/IBM Plex Mono type (was Inter), verdicts as
+rotated rubber stamps with a load animation, color-coded verdict chips on all
+list cards (new `v-{verdict}` classes), answer card restyled from dark navy to
+a bordered spec sheet with mono Rack/Cycle/Drying rows. Three Google Fonts
+families now load (preconnect + swap).
+
+**Not a ranking hypothesis.** Watch for second-order effects in the next dump:
+GA4 engagement time on item pages (font payload could hurt LCP slightly;
+clearer verdict scanning could help engagement). If Search Console positions
+move, attribute to the bibs change (same day), not this.
+
 ## 2026-06-10 — Silicone bibs page aligned to page-1 query (backlog item 1)
 
 **Evaluation of prior entry:** Baseline only, nothing to evaluate.

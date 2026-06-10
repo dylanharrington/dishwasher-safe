@@ -31,7 +31,7 @@ const schema = {
         <a class="card" href={`/items/${item.slug}/`}>
           <span class="icon-badge"><Icon name="dishwasher" /></span>
           <strong>{item.name}</strong>
-          <p><span class="chip">{verdictLabels[item.verdict]}</span></p>
+          <p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p>
           <p>{item.shortAnswer}</p>
         </a>
       ))}

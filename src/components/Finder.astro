@@ -1,0 +1,29 @@
+---
+const { placeholder = 'Type an item… cast iron, hydro flask, bibs', label = 'Find your item' } = Astro.props;
+---
+<div class="finder">
+  <label class="finder-label" for="finder-input">{label}</label>
+  <input id="finder-input" type="search" placeholder={placeholder} autocomplete="off" spellcheck="false" />
+  <p class="finder-status" role="status" aria-live="polite"></p>
+</div>
+<script>
+  const input = document.getElementById('finder-input') as HTMLInputElement | null;
+  const status = document.querySelector('.finder-status');
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-search]'));
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let shown = 0;
+    for (const card of cards) {
+      const hit = !q || (card.dataset.search ?? '').includes(q);
+      card.toggleAttribute('hidden', !hit);
+      if (hit) shown++;
+    }
+    if (status) {
+      status.textContent = !q
+        ? ''
+        : shown === 0
+          ? 'No matches here — try browsing by material instead.'
+          : `${shown} match${shown === 1 ? '' : 'es'}`;
+    }
+  });
+</script>

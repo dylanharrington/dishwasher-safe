@@ -4,6 +4,59 @@ Newest entry first. Each Claude session appends an entry per the loop in
 `CLAUDE.md`. Entry format: date, what changed, hypothesis, what to check in the
 next analytics dump, updated backlog.
 
+## 2026-06-10 (third pass) — Backlog sweep + UX pass (Dylan-requested batch)
+
+**Note on attribution:** Dylan explicitly asked for a batch session, overriding
+the one-change-per-session rule. Per-query position changes can still be
+attributed (each page's title change maps to one query cluster), but site-wide
+engagement shifts will be confounded with the same-day design refresh.
+
+**Backlog items closed (2, 3, 5, 6 + part of 4):**
+
+- **Hydro Flask (item 2, 628 imp @ 36):** title/H1 → "Is a Hydro Flask
+  dishwasher safe?"; FAQs now cover washing, lids, straw lids, older bottles;
+  added "Hydroflask" (one-word, how people actually type it) to aliases.
+- **Cast iron (item 3, 106 imp @ 36):** title → "Can you put cast iron in the
+  dishwasher?" (exact 29-imp query); FAQs: rescue-after-dishwasher, enameled.
+- **Non-stick (item 3, 129 imp @ 43):** title → "Can non stick pans go in the
+  dishwasher?" (exact 22-imp query); FAQs added.
+- **Also retargeted:** Yeti ("Are Yeti cups dishwasher safe?"), crystal ("Can
+  crystal go in the dishwasher?" — 17 imp @ 18), baby bottles ("Can you wash
+  baby bottles in the dishwasher?" + sterilizing FAQs), mason jars (canning
+  jar FAQs). All get updated=2026-06-10.
+- **Query mining (item 4):** swept all 637 queries. No big page gaps — the
+  tail is covered by material pages. Brand-bottle queries (Medela, Dr.
+  Brown's) deferred: need Dylan's call on manufacturer claims.
+- **Internal linking (item 5):** site-wide footer nav (Browse + 6 popular
+  guides) puts item links on every page; homepage now lists ALL 25 items
+  (popular first) instead of 12.
+- **Technical sweep (item 6):** verified clean — robots.txt + sitemap link ok,
+  39 URLs in sitemap, /can-you/* and 404 correctly excluded, canonicals fine,
+  JSON-LD valid by construction. Added missing 404 page.
+- **Refactor:** per-item FAQs moved from template conditionals into
+  `items.ts` as a `faqs` field.
+
+**UX pass (same session):** client-side instant filter on homepage and
+/items/ (matches names + aliases + verdicts, no-results state points to
+materials); hero pills replaced with a color-coded verdict legend; card
+answers clamped to 3 lines for scannability; branded 404; cross-links from
+item hubs to materials.
+
+**Check in next dump:** position movement on the hydro flask cluster (~628
+imp, baseline ~36), cast iron (~106 @ 36), nonstick (~129 @ 43), yeti (~228
+@ 40), crystal (~98 @ 29), baby bottles (~167 @ 55), mason jars (~156 @ 20).
+GA4: do item pages finally get internal pageviews now that the homepage
+lists everything and the footer links guides?
+
+**Backlog (new priority order):**
+
+1. Evaluate the 2026-06-10 changes once fresh data lands (~1–2 weeks).
+2. Brand baby-bottle pages (Medela, Dr. Brown's) — NEEDS DYLAN INPUT on
+   manufacturer-claim policy.
+3. Consider a dedicated "sterilizing bottles in the dishwasher" guide page if
+   the baby-bottles FAQ doesn't capture that ~20-imp cluster.
+4. Watch CWV/LCP after font additions (three Google Fonts families).
+
 ## 2026-06-10 (later) — Site-wide design refresh (Dylan-requested, not a backlog item)
 
 **What changed:** Full visual redesign in `BaseLayout.astro` (global stylesheet

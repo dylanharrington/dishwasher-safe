@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
+import Finder from '../../components/Finder.astro';
 import { items, verdictLabels } from '../../data/items';
 
 const itemsUrl = new URL('/items/', Astro.site).toString();
@@ -25,10 +26,11 @@ const schema = {
   <script type="application/ld+json" is:inline set:html={JSON.stringify(schema)} />
   <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Items</span></nav>
   <section class="section">
-    <div class="section-head"><h1>Dishwasher-safe answers by item</h1><p>Choose the thing you’re about to wash.</p></div>
+    <div class="section-head"><h1>Dishwasher-safe answers by item</h1><p>Choose the thing you’re about to wash. Not listed? <a class="inline-link" href="/materials/">Browse by material</a>.</p></div>
+    <Finder />
     <div class="grid">
       {items.map((item) => (
-        <a class="card" href={`/items/${item.slug}/`}>
+        <a class="card" href={`/items/${item.slug}/`} data-search={`${item.name} ${(item.aliases ?? []).join(' ')} ${verdictLabels[item.verdict]}`.toLowerCase()}>
           <span class="icon-badge"><Icon name="dishwasher" /></span>
           <strong>{item.name}</strong>
           <p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p>

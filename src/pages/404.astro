@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+---
+<BaseLayout title="Page not found | Dishwasher Safe?" description="That page is not here. Browse dishwasher-safe answers by item or material." noindex>
+  <article class="section">
+    <section class="answer-card">
+      <span class="verdict no"><Icon name="warning" />Not found</span>
+      <h1>This page isn’t in the rack.</h1>
+      <p class="answer-text">The page you’re looking for doesn’t exist or has moved. The answer you want is probably one click away.</p>
+      <div class="link-row">
+        <a class="link-card" href="/items/">Browse all items<Icon name="arrow" /></a>
+        <a class="link-card" href="/materials/">Browse by material<Icon name="arrow" /></a>
+        <a class="link-card" href="/">Go home<Icon name="arrow" /></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

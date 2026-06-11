@@ -94,8 +94,13 @@ const isCurrentNav = (href: string) => currentPath === href || currentPath.start
       .nav a[aria-current="page"]{background:var(--ink);color:var(--paper-2);border-color:var(--ink)}
 
       main{padding:18px 20px 72px;display:flex;flex-direction:column;gap:40px}
-      .site-footer{padding:22px 20px 40px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--muted)}
-      .site-footer a{text-decoration:underline;text-underline-offset:3px}
+      .site-footer{padding:26px 20px 44px;border-top:2px solid var(--ink);font-family:var(--mono);font-size:12px;line-height:1.7;color:var(--muted)}
+      .footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:26px}
+      .footer-col{display:grid;gap:5px;align-content:start}
+      .footer-col p{margin:0}
+      .footer-col strong{color:var(--ink);font-size:11.5px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px}
+      .footer-col a{width:max-content}
+      .footer-col a:hover{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 
       .breadcrumbs{display:flex;gap:8px;flex-wrap:wrap;color:var(--muted);font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
       .breadcrumbs a:hover{color:var(--accent)}
@@ -107,8 +112,19 @@ const isCurrentNav = (href: string) => currentPath === href || currentPath.start
       .hero h1{font-family:var(--display);font-weight:700;font-size:clamp(42px,7.5vw,82px);letter-spacing:-.025em;line-height:.97;max-width:800px}
       .hero h1 em{font-style:italic;color:var(--accent)}
       .hero p{font-size:clamp(16px,2vw,19px);line-height:1.6;color:var(--muted);max-width:640px}
-      .pills{display:flex;gap:8px;flex-wrap:wrap}
-      .pills span{background:var(--paper-2);border:1.5px solid var(--ink);border-radius:7px;padding:7px 11px 6px;font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:var(--ink);box-shadow:2px 2px 0 rgba(29,42,56,.10)}
+      .pills{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+      .pills-label{font-family:var(--mono);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-right:2px}
+      .pills .chip{font-size:11.5px;padding:6px 10px 5px;box-shadow:2px 2px 0 rgba(29,42,56,.08)}
+
+      /* Finder */
+      .finder{display:grid;gap:8px;max-width:540px;margin-top:6px}
+      .finder-label{font-family:var(--mono);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted)}
+      .finder input{width:100%;padding:14px 16px;border:2px solid var(--ink);border-radius:10px;background:var(--paper-2);font:500 16px/1.4 var(--body);color:var(--ink);box-shadow:var(--shadow-hard);transition:border-color .16s ease,box-shadow .16s ease;appearance:none}
+      .finder input:focus{outline:none;border-color:var(--accent);box-shadow:5px 5px 0 rgba(43,89,195,.22)}
+      .finder input::placeholder{color:#98A1AB}
+      .finder-status{font-family:var(--mono);font-size:12px;color:var(--muted);min-height:1.2em;margin:0}
+      .card[hidden]{display:none}
+      .inline-link{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
 
       /* Sections */
       .section{display:grid;gap:16px}
@@ -123,6 +139,7 @@ const isCurrentNav = (href: string) => currentPath === href || currentPath.start
       .card:hover{transform:translate(-2px,-2px);box-shadow:var(--shadow-hover);border-color:var(--accent);color:inherit}
       .card strong{font-family:var(--display);font-weight:600;font-size:19px;letter-spacing:-.01em;line-height:1.25}
       .card p{color:var(--muted);font-size:14px;line-height:1.55}
+      .card>p:last-of-type{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
       .icon-badge{width:48px;height:48px;border-radius:9px;border:1.5px solid var(--ink);background:var(--accent-tint);display:grid;place-items:center;color:var(--ink)}
 
       /* Chips (verdict tags on list cards) */
@@ -196,8 +213,9 @@ const isCurrentNav = (href: string) => currentPath === href || currentPath.start
         .site-header{align-items:flex-start}
         .hero{padding-top:26px}
         main{gap:32px}
+        .footer-grid{grid-template-columns:1fr}
       }
     </style>
   </head>
-  <body><div class="page"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Dishwasher Safe home"><span class="brand-mark"><Icon name="dishwasher" /></span><span>Dishwasher <span>Safe?</span></span></a><nav class="nav" aria-label="Primary">{navItems.map((item) => <a href={item.href} aria-current={isCurrentNav(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav></header><main id="main-content" tabindex="-1"><slot /></main><footer class="site-footer">Dishwasher Safe? gives general household guidance. Always follow the manufacturer’s care instructions for your exact item. <a href="/privacy/">Privacy</a>.</footer></div></body>
+  <body><div class="page"><a class="skip-link" href="#main-content">Skip to content</a><header class="site-header"><a class="brand" href="/" aria-label="Dishwasher Safe home"><span class="brand-mark"><Icon name="dishwasher" /></span><span>Dishwasher <span>Safe?</span></span></a><nav class="nav" aria-label="Primary">{navItems.map((item) => <a href={item.href} aria-current={isCurrentNav(item.href) ? 'page' : undefined}>{item.label}</a>)}</nav></header><main id="main-content" tabindex="-1"><slot /></main><footer class="site-footer"><div class="footer-grid"><div class="footer-col"><strong>Dishwasher Safe?</strong><p>General household guidance. Always follow the manufacturer’s care instructions for your exact item.</p></div><nav class="footer-col" aria-label="Browse"><strong>Browse</strong><a href="/items/">All items</a><a href="/materials/">Materials</a><a href="/can-you/">Can you…?</a><a href="/privacy/">Privacy</a></nav><nav class="footer-col" aria-label="Popular guides"><strong>Popular guides</strong><a href="/items/hydro-flask/">Hydro Flask</a><a href="/items/air-fryer-basket/">Air fryer baskets</a><a href="/items/cast-iron-skillet/">Cast iron</a><a href="/items/nonstick-pans/">Nonstick pans</a><a href="/items/silicone-bibs/">Silicone bibs</a><a href="/items/wooden-spoons/">Wooden spoons</a></nav></div></footer></div></body>
 </html>

@@ -15,31 +15,7 @@ const itemUrl = new URL(`/items/${item.slug}/`, Astro.site).toString();
 const relatedItems = (item.relatedSlugs ?? [])
   .map((slug) => findItem(slug))
   .filter(Boolean);
-const extraFaqs = item.slug === 'air-fryer-basket'
-  ? [
-    { question: 'Can an air fryer basket go in the dishwasher?', answer: 'Some removable air fryer baskets are dishwasher safe, but only when the manual says that exact basket, tray, drawer, or crisper plate can go in the dishwasher. Hand wash nonstick baskets when the manual is unclear.' },
-    { question: 'Are air fryer trays dishwasher safe?', answer: 'Some removable air fryer trays are dishwasher safe, but only when the manual says that exact tray, crisper plate, or drawer can go in the dishwasher. Hand wash nonstick trays when the manual is unclear.' },
-    { question: 'Should you hand wash a nonstick air fryer basket?', answer: 'Yes, hand washing is the safer default for a nonstick air fryer basket when the manual is missing, unclear, or only labels some removable parts dishwasher safe. Warm water, dish soap, and a non-abrasive sponge are less likely to wear the coating.' },
-    { question: 'Can you put an air fryer itself in the dishwasher?', answer: 'No. Only removable baskets, trays, crisper plates, drawers, or racks can go in the dishwasher, and only when the manual says that exact part is dishwasher safe. Never put the powered air fryer body in the dishwasher.' },
-  ]
-  : item.slug === 'hydro-flask'
-  ? [
-    { question: 'Are Hydro Flask caps dishwasher safe?', answer: 'Some Hydro Flask caps and lids are dishwasher safe on the top rack, but cap style matters. Check the exact cap care instructions, remove any loose gasket or straw parts if the manufacturer says to, and air dry everything fully before reassembling.' },
-    { question: 'Should older Hydro Flask bottles go in the dishwasher?', answer: 'Hand wash older Hydro Flask bottles unless the bottom stamp or model guidance clearly says dishwasher safe. Older finishes and coatings may not tolerate dishwasher detergent and heat as well as current dishwasher-safe models.' },
-  ]
-  : item.slug === 'silicone-bibs'
-  ? [
-    { question: 'Are silicone bibs dishwasher safe?', answer: 'Most food-grade silicone bibs are dishwasher safe on the top rack. Check the label first if the bib has fabric trim, snaps, or printed decorations, and skip heated dry for thin or flimsy bibs.' },
-    { question: 'Can you put silicone bibs in the dishwasher?', answer: 'Yes, you can put most silicone bibs in the dishwasher on the top rack. Secure the bib so it does not fold into a cup shape and hold dirty water, and let it air dry fully before the next use.' },
-    { question: 'Do silicone baby bibs need hand washing?', answer: 'Hand wash a silicone baby bib only when the label says no dishwasher or no heated dry, or when the bib has fabric trim, decorations, or snaps that may not tolerate dishwasher heat.' },
-  ]
-  : item.slug === 'pet-bowls'
-  ? [
-    { question: 'Are stainless steel dog bowls dishwasher safe?', answer: 'Yes, most plain stainless steel dog bowls are dishwasher safe. Use the normal or sanitize cycle and dry completely before the next use.' },
-    { question: 'Are plastic dog bowls dishwasher safe?', answer: 'Plastic dog bowls are only dishwasher safe if the label says so. Place dishwasher-safe plastic bowls on the top rack to reduce warping from heat.' },
-    { question: 'Can you put cat bowls in the dishwasher?', answer: 'Most stainless steel and ceramic cat bowls are dishwasher safe. Check plastic cat bowls for a dishwasher-safe label, and always dry bowls completely before use.' },
-  ]
-  : [];
+const extraFaqs = item.faqs ?? [];
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}},...extraFaqs.map((faq)=>({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))]};
 const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};
 const articleSchema = {

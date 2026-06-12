@@ -53,6 +53,7 @@ export const items: DishItem[] = [
     why: 'Insulated bottles can have coatings, seals, and powder finishes that vary by model and age.',
     caveats: ['Check the bottom stamp or manufacturer page for your exact model.', 'Hand wash if the bottle has a sentimental finish, custom print, or older coating.', 'Never dishwash lids with electronics, straws that trap gunk, or damaged gaskets.'],
     materials: ['stainless-steel', 'plastic-lids', 'silicone'],
+    relatedSlugs: ['travel-mug-lids', 'stanley-cup', 'yeti-cups'],
   },
   {
     slug: 'yeti-cups', name: 'Yeti cups and tumblers', aliases: ['Yetis', 'Yeti Rambler', 'insulated tumbler'], verdict: 'yes',

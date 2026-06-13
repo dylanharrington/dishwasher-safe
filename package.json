@@ -16,6 +16,7 @@
     "typescript": "latest"
   },
   "overrides": {
+    "esbuild": "0.28.1",
     "yaml-language-server": {
       "yaml": ">=2.8.3"
     }

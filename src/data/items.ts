@@ -111,6 +111,8 @@ export const items: DishItem[] = [
   },
   {
     slug: 'air-fryer-basket', name: 'air fryer baskets and trays', aliases: ['air fryer tray', 'air fryer trays', 'air fryer drawer', 'air fryer crisper plate', 'air fryer basket in dishwasher', 'can air fryer basket go in dishwasher', 'air fryer basket dishwasher safe', 'air fryer baskets dishwasher safe', 'air fryer tray dishwasher safe', 'air fryer trays in dishwasher', 'air fryer dishwasher safe', 'air fryer dishwasher'], verdict: 'depends',
+    question: 'Is an air fryer basket dishwasher safe?',
+    updated: '2026-06-14',
     faqs: [
       { question: 'Can an air fryer basket go in the dishwasher?', answer: 'Some removable air fryer baskets are dishwasher safe, but only when the manual says that exact basket, tray, drawer, or crisper plate can go in the dishwasher. Hand wash nonstick baskets when the manual is unclear.' },
       { question: 'Are air fryer trays dishwasher safe?', answer: 'Some removable air fryer trays are dishwasher safe, but only when the manual says that exact tray, crisper plate, or drawer can go in the dishwasher. Hand wash nonstick trays when the manual is unclear.' },

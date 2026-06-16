@@ -113,10 +113,11 @@ export const items: DishItem[] = [
   {
     slug: 'air-fryer-basket', name: 'air fryer baskets and trays', aliases: ['air fryer tray', 'air fryer trays', 'air fryer drawer', 'air fryer crisper plate', 'air fryer basket in dishwasher', 'can air fryer basket go in dishwasher', 'air fryer basket dishwasher safe', 'air fryer baskets dishwasher safe', 'air fryer tray dishwasher safe', 'air fryer trays in dishwasher', 'air fryer dishwasher safe', 'air fryer dishwasher'], verdict: 'depends',
     question: 'Is an air fryer basket dishwasher safe?',
-    updated: '2026-06-14',
+    updated: '2026-06-16',
     faqs: [
       { question: 'Can an air fryer basket go in the dishwasher?', answer: 'Some removable air fryer baskets are dishwasher safe, but only when the manual says that exact basket, tray, drawer, or crisper plate can go in the dishwasher. Hand wash nonstick baskets when the manual is unclear.' },
       { question: 'Are air fryer trays dishwasher safe?', answer: 'Some removable air fryer trays are dishwasher safe, but only when the manual says that exact tray, crisper plate, or drawer can go in the dishwasher. Hand wash nonstick trays when the manual is unclear.' },
+      { question: 'Can an air fryer drawer go in the dishwasher?', answer: 'Only put an air fryer drawer in the dishwasher when the manual says that exact removable drawer or pan is dishwasher safe. Hand wash nonstick drawers when the manual is missing, unclear, or excludes heated dry.' },
       { question: 'Should you hand wash a nonstick air fryer basket?', answer: 'Yes, hand washing is the safer default for a nonstick air fryer basket when the manual is missing, unclear, or only labels some removable parts dishwasher safe. Warm water, dish soap, and a non-abrasive sponge are less likely to wear the coating.' },
       { question: 'Can you put an air fryer itself in the dishwasher?', answer: 'No. Only removable baskets, trays, crisper plates, drawers, or racks can go in the dishwasher, and only when the manual says that exact part is dishwasher safe. Never put the powered air fryer body in the dishwasher.' },
     ],

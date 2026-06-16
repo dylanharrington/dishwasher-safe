@@ -4,7 +4,7 @@ import Icon from '../../components/Icon.astro';
 import { findItem, items, verdictLabels } from '../../data/items';
 export function getStaticPaths(){ return items.map((item)=>({ params:{ slug:item.slug }})); }
 const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not found');
-const title = `Can you put ${item.name} in the dishwasher?`;
+const title = item.question ?? `Can you put ${item.name} in the dishwasher?`;
 const updatedDate = item.updated ?? '2026-05-04';
 const updatedLabel = `Updated ${new Date(`${updatedDate}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}`;
 const description = item.shortAnswer;

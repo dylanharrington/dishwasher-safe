@@ -41,10 +41,11 @@ export const items: DishItem[] = [
   {
     slug: 'hydro-flask', name: 'Hydro Flask bottles and caps', aliases: ['Hydroflask', 'Hydro Flask caps', 'Hydro Flask lids', 'Hydro Flask straw lid', 'insulated water bottle', 'stainless steel bottle'], verdict: 'depends',
     question: 'Is a Hydro Flask dishwasher safe?',
-    updated: '2026-06-10',
+    updated: '2026-06-16',
     faqs: [
+      { question: 'Are Hydro Flask caps dishwasher safe?', answer: 'Some Hydro Flask caps and lids are dishwasher safe on the top rack, but cap style matters. Check the care instructions for your exact cap, remove any loose gasket or straw parts if the manufacturer says to, and air dry everything fully before reassembling.' },
       { question: 'Can you wash a Hydro Flask in the dishwasher?', answer: 'You can wash a Hydro Flask in the dishwasher if your exact bottle is labeled dishwasher safe. Many newer Hydro Flask bottles are, while older bottles and custom finishes should be hand washed. Put caps and lids on the top rack and air dry everything fully with the cap off.' },
-      { question: 'Are Hydro Flask lids dishwasher safe?', answer: 'Some Hydro Flask lids and caps are dishwasher safe on the top rack, but cap style matters. Check the care instructions for your exact lid, remove any loose gasket or straw parts if the manufacturer says to, and air dry everything fully before reassembling.' },
+      { question: 'Are Hydro Flask lids dishwasher safe?', answer: 'Some Hydro Flask lids are dishwasher safe on the top rack, but lid style matters. Check the care instructions for your exact lid, remove any loose gasket or straw parts if the manufacturer says to, and air dry everything fully before reassembling.' },
       { question: 'Are Hydro Flask straw lids dishwasher safe?', answer: 'Straw lids have more small parts than flat caps: straws, gaskets, and sliders that trap residue. If your straw lid is labeled dishwasher safe, wash it disassembled on the top rack and let every piece air dry before reassembling. Hand wash if any part is damaged or the label is unclear.' },
       { question: 'Should older Hydro Flask bottles go in the dishwasher?', answer: 'Hand wash older Hydro Flask bottles unless the bottom stamp or model guidance clearly says dishwasher safe. Older finishes and coatings may not tolerate dishwasher detergent and heat as well as current dishwasher-safe models.' },
     ],

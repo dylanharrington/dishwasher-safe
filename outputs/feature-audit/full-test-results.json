@@ -1,0 +1,472 @@
+{
+  "generatedAt": "2026-06-23T05:42:45.983Z",
+  "build": {
+    "command": "npm run build",
+    "status": "Passed",
+    "pages": 66,
+    "diagnostics": "0 errors, 0 warnings, 0 hints"
+  },
+  "storyCount": 24,
+  "passed": 24,
+  "failing": [],
+  "results": [
+    {
+      "id": "US-001",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Homepage H1 present",
+          "ok": true,
+          "evidence": "Can this go in the dishwasher?"
+        },
+        {
+          "name": "Verdict legend has 4 chips",
+          "ok": true,
+          "evidence": "Usually yes, Top rack only, Usually no, It depends"
+        },
+        {
+          "name": "Finder present and labeled",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "All item cards on home",
+          "ok": true,
+          "evidence": "26"
+        },
+        {
+          "name": "All material cards on home",
+          "ok": true,
+          "evidence": "8"
+        }
+      ]
+    },
+    {
+      "id": "US-002",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Finder input unique",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Hydro filter narrows cards",
+          "ok": true,
+          "evidence": "1 match"
+        },
+        {
+          "name": "No-match state works",
+          "ok": true,
+          "evidence": "No matches here — try browsing by material instead."
+        }
+      ]
+    },
+    {
+      "id": "US-003",
+      "phase": "browser/corrected-nav-scope",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Primary nav has four scoped header links",
+          "ok": true,
+          "evidence": "Header nav links: /items/, /materials/, /can-you/, /privacy/."
+        },
+        {
+          "name": "Section active nav uses aria-current",
+          "ok": true,
+          "evidence": "Items, Materials, Can you?, and Privacy routes each set one matching header link to aria-current=page."
+        }
+      ]
+    },
+    {
+      "id": "US-004",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Footer popular guide links present",
+          "ok": true,
+          "evidence": "34"
+        }
+      ]
+    },
+    {
+      "id": "US-005",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Items H1",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Items finder present",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Items cards match data",
+          "ok": true,
+          "evidence": "26"
+        },
+        {
+          "name": "Items verdict chips match data",
+          "ok": true,
+          "evidence": "26"
+        },
+        {
+          "name": "Items CollectionPage schema",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-006",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "All item pages match expected structure",
+          "ok": true,
+          "evidence": "26 pages"
+        }
+      ]
+    },
+    {
+      "id": "US-007",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Source notes render conditionally",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-008",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Related guides render conditionally",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-009",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "FAQ details counts match data",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-010",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Materials H1",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Material card count",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Material chip count",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Materials schema",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-011",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "All material detail pages match expected structure",
+          "ok": true,
+          "evidence": "8 pages"
+        }
+      ]
+    },
+    {
+      "id": "US-012",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Can-you H1",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Can-you cards link to items",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Can-you chip count",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Can-you schema",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-013",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "All can-you detail pages match expected structure",
+          "ok": true,
+          "evidence": "26 pages"
+        }
+      ]
+    },
+    {
+      "id": "US-014",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Title present",
+          "ok": true,
+          "evidence": "Dishwasher Safe? Fast yes/no answers"
+        },
+        {
+          "name": "Description present",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Canonical home URL",
+          "ok": true,
+          "evidence": "https://isdishwashersafe.com/"
+        },
+        {
+          "name": "Open Graph URL matches canonical",
+          "ok": true,
+          "evidence": "https://isdishwashersafe.com/"
+        }
+      ]
+    },
+    {
+      "id": "US-015",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Home JSON-LD types present",
+          "ok": true,
+          "evidence": "WebSite, CollectionPage"
+        }
+      ]
+    },
+    {
+      "id": "US-016",
+      "phase": "build/sitemap-robots",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Production build passes",
+          "ok": true,
+          "evidence": "npm run build completed with 0 errors, 0 warnings, 66 static pages."
+        },
+        {
+          "name": "Sitemap indexes canonical routes",
+          "ok": true,
+          "evidence": "dist/sitemap-0.xml contains 39 URLs including /can-you/ index, /items/hydro-flask/, and /materials/silicone/."
+        },
+        {
+          "name": "Can-you detail pages excluded from sitemap",
+          "ok": true,
+          "evidence": "Parsed sitemap locs have canYouDetailCount=0 for /^/can-you/[^/]+/$/."
+        },
+        {
+          "name": "Robots points to sitemap",
+          "ok": true,
+          "evidence": "dist/robots.txt allows all and links https://isdishwashersafe.com/sitemap-index.xml."
+        }
+      ]
+    },
+    {
+      "id": "US-017",
+      "phase": "browser/default-env",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "GA absent without env var",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Search verification absent without env var",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "GA and verification render with valid env vars",
+          "ok": true,
+          "evidence": "Env build with PUBLIC_GA_MEASUREMENT_ID=G-70HCESJDXC and PUBLIC_GOOGLE_SITE_VERIFICATION=test-verification-token emitted both tags."
+        }
+      ]
+    },
+    {
+      "id": "US-018",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Privacy H1",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Privacy account/form disclosure",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Privacy analytics mention",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-019",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "404 message present",
+          "ok": true,
+          "evidence": "This page isn’t in the rack."
+        },
+        {
+          "name": "404 noindex",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "404 recovery links",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-020",
+      "phase": "browser",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Finder accessibility basics present",
+          "ok": true,
+          "evidence": ""
+        },
+        {
+          "name": "Nav links have text",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-021",
+      "phase": "browser/mobile",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Item page has no mobile horizontal overflow",
+          "ok": true,
+          "evidence": "{\"headerHeight\":122.1953125,\"noHorizontalOverflow\":true,\"tileDisplay\":\"295px\",\"viewportWidth\":390}"
+        },
+        {
+          "name": "Answer tiles stack on mobile",
+          "ok": true,
+          "evidence": "295px"
+        },
+        {
+          "name": "Home has no mobile horizontal overflow",
+          "ok": true,
+          "evidence": "{\"cardWidths\":[350,350,350,350,350],\"noHorizontalOverflow\":true,\"viewportWidth\":390}"
+        }
+      ]
+    },
+    {
+      "id": "US-022",
+      "phase": "config/redirect",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "WWW redirect configured",
+          "ok": true,
+          "evidence": "vercel.json redirects host www.isdishwashersafe.com from /(.*) to https://isdishwashersafe.com/$1 with permanent=true."
+        }
+      ]
+    },
+    {
+      "id": "US-023",
+      "phase": "code/content-spot-check",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Variable-product pages use manual/label/check language",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    },
+    {
+      "id": "US-024",
+      "phase": "browser/visual-dom",
+      "status": "Passed",
+      "checks": [
+        {
+          "name": "Item visual components present",
+          "ok": true,
+          "evidence": "{\"answerCard\":true,\"caveatRows\":3,\"faqDetails\":7,\"noHorizontalOverflow\":true,\"verdict\":true}"
+        },
+        {
+          "name": "Material visual components present",
+          "ok": true,
+          "evidence": "{\"answerCard\":true,\"caveatRows\":3,\"verdict\":true}"
+        },
+        {
+          "name": "No desktop overflow on item page",
+          "ok": true,
+          "evidence": ""
+        }
+      ]
+    }
+  ]
+}

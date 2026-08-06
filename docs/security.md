@@ -12,8 +12,8 @@ The audit workflow fails only on high or critical vulnerabilities to avoid noisy
 
 ## Current baseline
 
-Verified 2026-07-29:
+Verified 2026-08-06:
 
-- Astro resolves to 7.1.3, with patched transitive versions of Sharp 0.35.3/libvips 1.3.2, `fast-uri` 3.1.4, SVGO 4.0.2, and `js-yaml` 4.3.0.
+- Astro resolves to 7.1.3, with patched transitive versions of Sharp 0.35.3/libvips 1.3.2, `fast-uri` 3.1.5, SVGO 4.0.2, `js-yaml` 4.3.1, and PostCSS 8.5.26.
 - `npm audit --audit-level=high` reports 0 vulnerabilities.
 - `npm run build` succeeds with 0 Astro diagnostics.

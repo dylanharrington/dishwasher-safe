@@ -4,6 +4,14 @@ Newest entry first. Each Claude session appends an entry per the loop in
 `CLAUDE.md`. Entry format: date, what changed, hypothesis, what to check in the
 next analytics dump, updated backlog.
 
+## 2026-08-10 — Weekly-audit remediation and content release gates
+
+Fixed the baby-bottles missing-answer defect across visible copy, metadata, and JSON-LD. Added required item review dates, per-guide provenance, visible official references, content validation, and post-build rendered-page validation. The build now fails for missing critical fields, sources, malformed dates/relationships, rendered `undefined`/`null`, empty primary answers, or empty FAQ answer text.
+
+Made the generic air-fryer basket guide the umbrella intent owner with a part-by-part decision table, a powered-body prohibition, and model/manual lookup steps. Added a Ninja model-family table and explicit generic-versus-Ninja link labels; preserved the narrower part pages. Expanded travel-mug lids for disassembly, oil/odor/mold cleanup, and drying, and expanded ceramic mugs for handmade, printed/photo, metallic, cracked, and insulated exceptions.
+
+Replaced the flat homepage list with editorial topic groups. Added GA4 events for finder searches, zero results, result clicks, guide cards, related guides, FAQ opens, and official-source clicks. Next audit should compare generic/part/brand air-fryer query ownership and inspect these events by landing page.
+
 ## 2026-06-10 (third pass) — Backlog sweep + UX pass (Dylan-requested batch)
 
 **Note on attribution:** Dylan explicitly asked for a batch session, overriding

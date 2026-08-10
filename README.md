@@ -6,6 +6,8 @@ Small SEO utility site for direct dishwasher-safe answers.
 
 - `npm run dev`
 - `npm run build`
+- `npm run validate:content`
+- `npm run validate:rendered` (after a build)
 - `npm run preview`
 
 ## Links
@@ -17,3 +19,5 @@ Small SEO utility site for direct dishwasher-safe answers.
 ## Tracking
 
 See `docs/project-plan.md` for launch tasks and expansion notes.
+
+Item content is release-gated: every guide must have non-empty answer/spec fields, an explicit review date, and at least one tracked source. The production build also scans every rendered item page for empty answers, missing FAQ answer text, and leaked `undefined`/`null` values.

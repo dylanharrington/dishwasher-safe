@@ -10,6 +10,11 @@ const { placeholder = 'Type an item… cast iron, hydro flask, bibs', label = 'F
   const input = document.getElementById('finder-input') as HTMLInputElement | null;
   const status = document.querySelector('.finder-status');
   const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-search]'));
+  let searchTimer: number | undefined;
+  const track = (name: string, params: Record<string, unknown>) => {
+    const gtag = (window as typeof window & { gtag?: (...args: unknown[]) => void }).gtag;
+    gtag?.('event', name, params);
+  };
   input?.addEventListener('input', () => {
     const q = input.value.trim().toLowerCase();
     let shown = 0;
@@ -25,5 +30,11 @@ const { placeholder = 'Type an item… cast iron, hydro flask, bibs', label = 'F
           ? 'No matches here — try browsing by material instead.'
           : `${shown} match${shown === 1 ? '' : 'es'}`;
     }
+    window.clearTimeout(searchTimer);
+    if (q) searchTimer = window.setTimeout(() => track(shown === 0 ? 'finder_zero_result' : 'finder_search', { search_term: q, result_count: shown }), 500);
+  });
+  for (const card of cards) card.addEventListener('click', () => {
+    const q = input?.value.trim().toLowerCase();
+    if (q) track('finder_result_click', { search_term: q, destination: card.getAttribute('href') });
   });
 </script>

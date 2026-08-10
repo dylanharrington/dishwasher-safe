@@ -15,6 +15,8 @@ Spin up a second SEO micro-site using the Laundry Settings pattern, but focused 
 - sitemap, robots.txt, canonical URLs
 - FAQ schema on item pages
 - Google Analytics / Search Console env hooks
+- validated item content, explicit review/source provenance, and rendered-output QA
+- topic navigation plus answer-journey analytics events
 
 ## Not in scope yet
 

@@ -21,6 +21,12 @@ const popularItemSlugs = [
 ];
 const popularItems = popularItemSlugs.map((slug) => findItem(slug)).filter((item): item is DishItem => Boolean(item));
 const orderedItems = [...popularItems, ...items.filter((item) => !popularItemSlugs.includes(item.slug))];
+const topicGroups = [
+  { name: 'Appliance parts', description: 'Air fryers, pressure cookers, and blender parts.', slugs: ['air-fryer-basket','air-fryer-crisper-plate','air-fryer-drawer','air-fryer-rack','air-fryer-silicone-liner','ninja-air-fryer-basket','instant-pot-lid','blender-jar'] },
+  { name: 'Drinkware', description: 'Bottles, tumblers, mugs, lids, jars, and glassware.', slugs: ['hydro-flask','yeti-cups','stanley-cup','travel-mug-lids','ceramic-mugs','crystal-glasses','mason-jars'] },
+  { name: 'Cookware and prep', description: 'Pans, knives, utensils, and cutting boards.', slugs: ['nonstick-pans','cast-iron-skillet','kitchen-knives','wooden-spoons','cutting-boards-plastic','cutting-boards-wood','fine-china'] },
+  { name: 'Baby, pet, and storage', description: 'Small parts and food-contact items that need careful drying.', slugs: ['baby-bottles','silicone-bibs','pet-bowls','food-storage-containers'] },
+].map((group) => ({ ...group, items: group.slugs.map((slug) => findItem(slug)).filter((item): item is DishItem => Boolean(item)) }));
 const searchText = (item: DishItem) => `${item.name} ${(item.aliases ?? []).join(' ')} ${verdictLabels[item.verdict]}`.toLowerCase();
 const schema = [
   {
@@ -59,17 +65,8 @@ const schema = [
   </section>
 
   <section class="section">
-    <div class="section-head"><h2>All items</h2><p>Most-searched first. Not listed? <a class="inline-link" href="/materials/">Browse by material</a> instead.</p></div>
-    <div class="grid">
-      {orderedItems.map((item) => (
-        <a class="card" href={`/items/${item.slug}/`} data-search={searchText(item)}>
-          <span class="icon-badge"><Icon name="dishwasher" /></span>
-          <strong>{item.name}</strong>
-          <p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p>
-          <p>{item.shortAnswer}</p>
-        </a>
-      ))}
-    </div>
+    <div class="section-head"><h2>Browse by topic</h2><p>Choose a useful group instead of scanning one long list. <a class="inline-link" href="/items/">See the alphabetical item index</a>.</p></div>
+    {topicGroups.map((group) => <section class="section"><div class="section-head"><h3>{group.name}</h3><p>{group.description}</p></div><div class="grid">{group.items.map((item) => <a class="card" href={`/items/${item.slug}/`} data-search={searchText(item)} data-track="guide_card_click"><span class="icon-badge"><Icon name="dishwasher" /></span><strong>{item.name}</strong><p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p><p>{item.shortAnswer}</p></a>)}</div></section>)}
   </section>
 
   <section class="section">

@@ -30,7 +30,7 @@ const schema = {
     <Finder />
     <div class="grid">
       {items.map((item) => (
-        <a class="card" href={`/items/${item.slug}/`} data-search={`${item.name} ${(item.aliases ?? []).join(' ')} ${verdictLabels[item.verdict]}`.toLowerCase()}>
+        <a class="card" href={`/items/${item.slug}/`} data-search={`${item.name} ${(item.aliases ?? []).join(' ')} ${verdictLabels[item.verdict]}`.toLowerCase()} data-track="guide_card_click">
           <span class="icon-badge"><Icon name="dishwasher" /></span>
           <strong>{item.name}</strong>
           <p><span class={`chip v-${item.verdict}`}>{verdictLabels[item.verdict]}</span></p>

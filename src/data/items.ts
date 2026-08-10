@@ -6,8 +6,8 @@ export type DishItem = {
   aliases?: string[];
   /** Overrides the default "Can you put {name} in the dishwasher?" title/H1 to match exact query phrasing. */
   question?: string;
-  /** Overrides the site-wide default updated date on the item page. ISO date. */
-  updated?: string;
+  /** Item-specific reviewed-on date. ISO date; change only after content/source review. */
+  updated: string;
   /** Extra FAQ entries rendered on the item page and emitted in FAQPage schema. */
   faqs?: { question: string; answer: string }[];
   verdict: Verdict;
@@ -19,7 +19,21 @@ export type DishItem = {
   caveats: string[];
   materials: string[];
   sourceNote?: string;
+  sections?: { heading: string; body: string }[];
+  decisionRows?: { part: string; dishwasher: string; check: string }[];
+  manualLookupSteps?: string[];
   relatedSlugs?: string[];
+};
+
+export type ItemSource = {
+  label: string;
+  url: string;
+  publisher: string;
+};
+
+export type ItemProvenance = {
+  reviewedOn: string;
+  sources: ItemSource[];
 };
 
 export type Material = {
@@ -59,7 +73,7 @@ export const items: DishItem[] = [
   {
     slug: 'yeti-cups', name: 'Yeti cups and tumblers', aliases: ['Yetis', 'Yeti Rambler', 'insulated tumbler'], verdict: 'yes',
     question: 'Are Yeti cups dishwasher safe?',
-    updated: '2026-06-10',
+    updated: '2026-08-10',
     shortAnswer: 'Most current Yeti cups and tumblers are dishwasher safe. Put lids and gaskets on the top rack and let everything dry fully.',
     placement: 'Cup on either rack if it fits securely; lids and small parts on top rack', cycle: 'Normal cycle', dry: 'Air dry lids and gaskets separately',
     why: 'Current stainless Yeti drinkware is built for dishwasher cleaning, but lids have removable parts that need airflow.',
@@ -68,6 +82,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'wooden-spoons', name: 'wooden spoons', aliases: ['wood utensils', 'wood spatula'], verdict: 'no',
+    updated: '2026-05-04',
     shortAnswer: 'Do not put wooden spoons in the dishwasher. Heat, detergent, and long water exposure can crack, warp, and dry out the wood.',
     placement: 'Hand wash only', cycle: 'No dishwasher cycle recommended', dry: 'Towel dry, then air dry upright',
     why: 'Wood absorbs water and expands, then dries unevenly under dishwasher heat.',
@@ -76,6 +91,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'kitchen-knives', name: 'kitchen knives', aliases: ['chef knife', 'paring knife'], verdict: 'no',
+    updated: '2026-05-04',
     shortAnswer: 'Hand wash good kitchen knives. Dishwashers can dull edges, bang blades around, and damage handles.',
     placement: 'Hand wash only for quality knives', cycle: 'No dishwasher cycle recommended', dry: 'Dry immediately',
     why: 'The edge can hit racks or other dishes, and harsh detergent can attack handles and finishes.',
@@ -100,11 +116,12 @@ export const items: DishItem[] = [
   {
     slug: 'baby-bottles', name: 'baby bottles', aliases: ['infant bottles', 'bottle nipples', 'washing bottles in dishwasher'], verdict: 'top-rack',
     question: 'Can you wash baby bottles in the dishwasher?',
-    updated: '2026-06-10',
+    updated: '2026-08-10',
     faqs: [
       { question: 'Does the dishwasher sterilize baby bottles?', answer: 'A hot wash or sanitize cycle cleans bottles well for everyday use, but a dishwasher sanitize cycle is not the same as medical-grade sterilizing. For newborns, preemies, or medical needs, follow your bottle maker’s sterilizing instructions and pediatric guidance.' },
       { question: 'Can bottle nipples go in the dishwasher?', answer: 'Dishwasher-safe nipples and valves can go on the top rack inside a closed small-parts basket so they do not fall or fill with water. Inspect them after washing and replace any that are cloudy, tacky, cracked, or torn.' },
     ],
+    shortAnswer: 'Yes—most baby bottles labeled dishwasher safe can be washed on the top rack. Put nipples, valves, and caps in a closed small-parts basket, then air dry every piece completely.',
     placement: 'Top rack; nipples, valves, and caps in a small-parts basket', cycle: 'Hot wash or sanitize cycle if the bottle label allows', dry: 'Air dry completely on a clean rack',
     why: 'Small parts need to stay contained, and some plastics or nipples are more heat-sensitive than the bottle body.',
     caveats: ['Follow the bottle maker’s sterilizing instructions for newborn, preemie, or medical needs.', 'Inspect nipples for clouding, tackiness, cracks, or tears.', 'Do not let small parts sit in pooled water.'],
@@ -113,7 +130,7 @@ export const items: DishItem[] = [
   {
     slug: 'air-fryer-basket', name: 'air fryer baskets and trays', aliases: ['air fryer tray', 'air fryer trays', 'air fryer drawer', 'air fryer crisper plate', 'air fryer basket in dishwasher', 'can air fryer basket go in dishwasher', 'air fryer basket dishwasher safe', 'air fryer baskets dishwasher safe', 'air fryer tray dishwasher safe', 'air fryer trays in dishwasher', 'air fryer dishwasher safe', 'air fryer dishwasher'], verdict: 'depends',
     question: 'Is an air fryer basket dishwasher safe?',
-    updated: '2026-06-16',
+    updated: '2026-08-10',
     faqs: [
       { question: 'Can an air fryer basket go in the dishwasher?', answer: 'Some removable air fryer baskets are dishwasher safe, but only when the manual says that exact basket, tray, drawer, or crisper plate can go in the dishwasher. Hand wash nonstick baskets when the manual is unclear.' },
       { question: 'Are air fryer trays dishwasher safe?', answer: 'Some removable air fryer trays are dishwasher safe, but only when the manual says that exact tray, crisper plate, or drawer can go in the dishwasher. Hand wash nonstick trays when the manual is unclear.' },
@@ -127,10 +144,20 @@ export const items: DishItem[] = [
     caveats: ['Never submerge or dishwash the powered air fryer body.', 'Avoid abrasive pads on nonstick baskets.', 'Check whether removable crisping plates, trays, racks, or drawers have separate instructions.'],
     materials: ['nonstick', 'stainless-steel'],
     sourceNote: 'Use the care section in your air fryer manual as the final source. Manufacturers often approve one removable part while excluding another part from the same appliance.',
+    decisionRows: [
+      { part: 'Powered body', dishwasher: 'Never', check: 'Keep the plug, heating element, and controls out of water.' },
+      { part: 'Basket', dishwasher: 'Only if the manual says yes', check: 'Model-specific nonstick and handle instructions.' },
+      { part: 'Drawer or pan', dishwasher: 'Only if the manual says yes', check: 'Size, coating, handle seams, and rack clearance.' },
+      { part: 'Crisper plate or tray', dishwasher: 'Only if the manual says yes', check: 'Coating plus removable rubber feet or bumpers.' },
+      { part: 'Plain metal rack', dishwasher: 'Often, if labeled', check: 'Coatings, mixed metals, welds, and small accessories.' },
+      { part: 'Silicone liner', dishwasher: 'Usually top rack', check: 'Product label; disposable paper liners never go in.' },
+    ],
+    manualLookupSteps: ['Find the model number on the rating label, usually on the base or back.', 'Open the manufacturer support site and search that exact model number.', 'Read the Cleaning & Maintenance section for each named removable part; do not assume one approved part means every part is approved.'],
     relatedSlugs: ['air-fryer-crisper-plate', 'air-fryer-drawer', 'air-fryer-rack', 'air-fryer-silicone-liner', 'ninja-air-fryer-basket'],
   },
   {
     slug: 'air-fryer-crisper-plate', name: 'air fryer crisper plates', aliases: ['air fryer crisping plate', 'air fryer insert plate', 'air fryer grill plate'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Some air fryer crisper plates are dishwasher safe, but nonstick-coated plates should be hand washed unless your manual clearly says the crisper plate can go in the dishwasher.',
     placement: 'Top or bottom rack only if the manual allows it and the plate sits securely', cycle: 'Normal cycle only if labeled dishwasher safe', dry: 'Dry fully before putting it back in the basket',
     why: 'Crisper plates often use nonstick coating and small rubber feet or bumpers. Dishwasher heat and rack contact can wear coatings and loosen small parts over time.',
@@ -141,6 +168,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'air-fryer-drawer', name: 'air fryer drawers', aliases: ['air fryer drawer pan', 'air fryer bucket', 'air fryer pan'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Air fryer drawers are dishwasher safe only when the manual says the removable drawer or pan is dishwasher safe. Hand wash nonstick drawers when the manual is unclear.',
     placement: 'Bottom rack only if the drawer fits securely and is labeled dishwasher safe', cycle: 'Normal cycle if allowed; avoid sanitize unless the manual allows high heat', dry: 'Dry the drawer and handle area completely',
     why: 'Drawers are larger removable parts with nonstick coating, handle hardware, seams, and sometimes rubber bumpers that may age faster in a dishwasher.',
@@ -151,6 +179,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'air-fryer-rack', name: 'air fryer racks', aliases: ['air fryer wire rack', 'air fryer skewer rack', 'air fryer dehydrator rack'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Plain stainless steel air fryer racks are often dishwasher safe, but coated racks, skewer pieces, and accessories with plastic or silicone parts need manual-specific guidance.',
     placement: 'Top or bottom rack if the rack is stainless and sits securely', cycle: 'Normal cycle if labeled dishwasher safe', dry: 'Dry promptly to prevent spots or rust on mixed-metal parts',
     why: 'Racks are usually less coating-sensitive than baskets, but small accessories can trap food and may include coatings, welds, or handle pieces that are not dishwasher safe.',
@@ -161,6 +190,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'air-fryer-silicone-liner', name: 'air fryer silicone liners', aliases: ['silicone air fryer basket liner', 'air fryer silicone pot'], verdict: 'top-rack',
+    updated: '2026-05-04',
     shortAnswer: 'Most food-grade silicone air fryer liners are dishwasher safe on the top rack, but check the label and skip heated dry if the liner is thin or printed.',
     placement: 'Top rack, secured so it does not flip and collect dirty water', cycle: 'Normal cycle if labeled dishwasher safe', dry: 'Air dry fully before storing',
     why: 'Food-grade silicone usually tolerates dishwasher heat, but thin liners, printed markings, and attached handles can vary.',
@@ -171,12 +201,20 @@ export const items: DishItem[] = [
   },
   {
     slug: 'ninja-air-fryer-basket', name: 'Ninja air fryer baskets', aliases: ['Ninja air fryer tray', 'Ninja crisper plate', 'Ninja Foodi basket'], verdict: 'depends',
+    updated: '2026-08-10',
     shortAnswer: 'Many Ninja air fryer baskets and crisper plates are dishwasher safe, but the answer depends on the exact Foodi or air fryer model. Check the model manual before dishwashing nonstick parts.',
     placement: 'Dishwasher rack only if the manual allows that exact basket, tray, or crisper plate', cycle: 'Normal cycle if allowed by the model manual', dry: 'Dry completely before reinstalling',
     why: 'Ninja uses different removable baskets, trays, plates, and multi-cooker parts across models, so the generic brand name is not enough to know the safe cleaning method.',
     caveats: ['Never dishwash the cooker base or powered unit.', 'Check whether the crisper plate and basket have separate care instructions.', 'Hand wash to preserve nonstick coating if you are unsure.'],
     materials: ['nonstick', 'stainless-steel', 'plastic-lids'],
     sourceNote: 'Use the Ninja manual for the exact model number. Brand pages and retailer listings may not cover every removable accessory.',
+    decisionRows: [
+      { part: 'AF100 / AF101 family basket and crisper plate', dishwasher: 'Manual identifies removable parts as dishwasher safe', check: 'Confirm the complete model number; hand washing can extend nonstick life.' },
+      { part: 'DZ dual-basket family baskets and crisper plates', dishwasher: 'Follow the exact DZ-series manual', check: 'Treat each basket and plate as a separate named part.' },
+      { part: 'Foodi multi-cooker Cook & Crisp basket', dishwasher: 'Model-specific', check: 'Do not transfer guidance from a countertop air fryer to a Foodi pressure cooker.' },
+      { part: 'Powered base', dishwasher: 'Never', check: 'Wipe only after unplugging and cooling.' },
+    ],
+    manualLookupSteps: ['Copy the model number from the rating label on the unit.', 'Search Ninja Support manuals for that exact number, including every letter and suffix.', 'In Cleaning & Maintenance, match the words basket, crisper plate, drawer, or rack to the part in your hand.'],
     relatedSlugs: ['air-fryer-basket', 'air-fryer-crisper-plate', 'air-fryer-drawer'],
   },
   {
@@ -210,7 +248,7 @@ export const items: DishItem[] = [
   {
     slug: 'crystal-glasses', name: 'crystal glasses', aliases: ['crystal', 'wine crystal', 'crystal stemware'], verdict: 'no',
     question: 'Can crystal go in the dishwasher?',
-    updated: '2026-06-10',
+    updated: '2026-08-10',
     faqs: [
       { question: 'What happens if crystal goes in the dishwasher?', answer: 'Crystal can come out cloudy, etched, or chipped. Cloudiness from hard-water film can sometimes be polished off with vinegar, but etching from detergent and heat is permanent. Delicate stems can also crack from vibration against the rack.' },
     ],
@@ -235,6 +273,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'cutting-boards-plastic', name: 'plastic cutting boards', aliases: ['poly cutting board'], verdict: 'yes',
+    updated: '2026-05-04',
     shortAnswer: 'Most plastic cutting boards are dishwasher safe, usually on the bottom rack if they fit securely.',
     placement: 'Bottom rack if secure and label allows', cycle: 'Normal or sanitize cycle if allowed', dry: 'Dry completely before storing',
     why: 'Dishwasher heat can clean plastic boards well, but thin boards may warp.',
@@ -243,6 +282,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'cutting-boards-wood', name: 'wood cutting boards', aliases: ['butcher block board'], verdict: 'no',
+    updated: '2026-05-04',
     shortAnswer: 'Do not put wood cutting boards in the dishwasher. They can crack, warp, and split.',
     placement: 'Hand wash only', cycle: 'No dishwasher cycle recommended', dry: 'Towel dry upright',
     why: 'Wood expands with water and dries unevenly under heat.',
@@ -251,6 +291,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'stanley-cup', name: 'Stanley cups', aliases: ['Stanley tumbler', 'Quencher'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Many Stanley cups are dishwasher safe, but check your exact model and put lids, straws, and small parts on the top rack.',
     placement: 'Cup if label allows; lid and straw top rack', cycle: 'Normal cycle if labeled safe', dry: 'Air dry disassembled',
     why: 'Dishwasher-safe status varies by model, finish, and lid parts.',
@@ -259,14 +300,17 @@ export const items: DishItem[] = [
   },
   {
     slug: 'travel-mug-lids', name: 'travel mug lids', aliases: ['coffee mug lid', 'tumbler lid'], verdict: 'top-rack',
-    shortAnswer: 'Most dishwasher-safe travel mug lids belong on the top rack, disassembled if possible, so gaskets and sliders can rinse and dry.',
+    updated: '2026-08-10',
+    shortAnswer: 'Most labeled travel mug lids are top-rack dishwasher safe when disassembled. Remove gaskets and sliders only as the maker directs, wash trapped coffee oil away, and dry every piece separately before reassembly.',
     placement: 'Top rack or small-parts basket', cycle: 'Normal cycle', dry: 'Air dry fully before reassembling',
     why: 'Lids trap coffee oils and moisture around gaskets, sliders, and sip openings.',
     caveats: ['Do not dishwash electronic, temperature-display, or self-heating lids.', 'Remove rubber gaskets when the manufacturer says they are removable.', 'Replace gaskets that smell, crack, or stay sticky.'],
+    sections: [{ heading: 'Odor, mold, and trapped coffee oil', body: 'Open every maker-approved removable slider and gasket so water reaches hidden channels. If odor or visible residue remains after a dishwasher cycle, hand-clean the channel with warm soapy water and a small soft brush. Never pry out a gasket the manufacturer calls non-removable, and do not reassemble a damp lid.' }],
     materials: ['plastic-lids', 'silicone'],
   },
   {
     slug: 'instant-pot-lid', name: 'Instant Pot lids', aliases: ['pressure cooker lid'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Many removable pressure-cooker lids have dishwasher-safe parts, but valves, sealing rings, and electronics need exact manual guidance.',
     placement: 'Top rack only for removable parts that the manual allows', cycle: 'Normal cycle if allowed', dry: 'Air dry disassembled',
     why: 'Pressure-cooker lids include seals and valves that must stay clean and correctly seated.',
@@ -275,6 +319,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'blender-jar', name: 'blender jars', aliases: ['blender pitcher'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Many blender jars are dishwasher safe, but blade assemblies, gaskets, and insulated or powered bases need manual-specific care.',
     placement: 'Top rack for plastic jars if allowed; glass jars may fit bottom rack securely', cycle: 'Normal cycle if labeled safe', dry: 'Air dry disassembled',
     why: 'Heat can stress plastic jars and trapped food can remain around blades and gaskets.',
@@ -283,6 +328,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'food-storage-containers', name: 'food storage containers', aliases: ['Tupperware', 'meal prep containers'], verdict: 'top-rack',
+    updated: '2026-05-04',
     shortAnswer: 'Most dishwasher-safe plastic food containers should go on the top rack. Glass containers can usually go on either rack if the lid is removed.',
     placement: 'Top rack for plastic containers and lids; glass bases where secure', cycle: 'Normal cycle', dry: 'Air dry before nesting',
     why: 'Plastic containers and lids can warp near heating elements, while glass bases are more heat tolerant.',
@@ -291,14 +337,18 @@ export const items: DishItem[] = [
   },
   {
     slug: 'ceramic-mugs', name: 'ceramic mugs', aliases: ['coffee mugs'], verdict: 'yes',
-    shortAnswer: 'Most glazed ceramic mugs are dishwasher safe, but handmade, metallic, or decorated mugs may need hand washing.',
+    question: 'Can you dishwash ceramic mugs?',
+    updated: '2026-08-10',
+    shortAnswer: 'You can dishwash most everyday glazed ceramic mugs, but hand wash handmade pottery, photo or printed mugs, metallic trim, cracked pieces, and insulated ceramic mugs unless their maker explicitly says dishwasher safe.',
     placement: 'Top or bottom rack if secure', cycle: 'Normal cycle', dry: 'Normal dry or air dry',
     why: 'Everyday glazed ceramic tolerates dishwashing, while decorations and special finishes are more fragile.',
-    caveats: ['Hand wash mugs with metallic gold or silver trim.', 'Check handmade pottery for dishwasher-safe guidance.', 'Do not dishwash cracked mugs.'],
+    caveats: ['Hand wash photo mugs, printed decoration, and metallic gold or silver trim.', 'Check the potter’s guidance for handmade pieces; porous or low-fired clay may absorb water.', 'Do not dishwash cracked or crazed mugs, or insulated ceramic mugs without an explicit dishwasher-safe label.'],
+    sections: [{ heading: 'Exception checklist', body: 'Hand wash when the mug is handmade, carries a photo or surface print, has metallic trim, shows a crack or glaze crazing, or uses a double-wall insulated construction. For an ordinary intact glazed mug with no special decoration, a normal dishwasher cycle is usually appropriate.' }],
     materials: ['ceramic'],
   },
   {
     slug: 'fine-china', name: 'fine china', aliases: ['china plates', 'porcelain china'], verdict: 'depends',
+    updated: '2026-05-04',
     shortAnswer: 'Some modern china is dishwasher safe, but hand wash antique, hand-painted, metallic-trimmed, or sentimental pieces.',
     placement: 'Gentle cycle if labeled dishwasher safe; otherwise hand wash', cycle: 'China/crystal or gentle cycle if allowed', dry: 'Air dry or low/no-heat dry',
     why: 'Glazes and decorations vary widely, especially on older or decorative china.',
@@ -307,6 +357,7 @@ export const items: DishItem[] = [
   },
   {
     slug: 'pet-bowls', name: 'pet and dog bowls', aliases: ['dog bowl', 'dog bowls', 'cat bowl', 'stainless dog bowls', 'ceramic dog bowls'], verdict: 'yes',
+    updated: '2026-05-04',
     faqs: [
       { question: 'Are stainless steel dog bowls dishwasher safe?', answer: 'Yes, most plain stainless steel dog bowls are dishwasher safe. Use the normal or sanitize cycle and dry completely before the next use.' },
       { question: 'Are plastic dog bowls dishwasher safe?', answer: 'Plastic dog bowls are only dishwasher safe if the label says so. Place dishwasher-safe plastic bowls on the top rack to reduce warping from heat.' },
@@ -319,6 +370,34 @@ export const items: DishItem[] = [
     materials: ['stainless-steel', 'ceramic', 'plastic-lids'],
   },
 ];
+
+const sourceCatalog: Record<string, ItemSource> = {
+  manufacturerLabel: { label: 'Care label or manual for the exact item', publisher: 'Item manufacturer', url: 'https://www.whirlpool.com/blog/kitchen/what-is-and-is-not-dishwasher-safe.html' },
+  cdcBottles: { label: 'Hygiene and cleaning guidance', publisher: 'CDC', url: 'https://www.cdc.gov/hygiene/about/index.html' },
+  ninjaSupport: { label: 'Ninja manuals and support', publisher: 'Ninja', url: 'https://support.sharkninja.com/' },
+  hydroFlask: { label: 'Product care', publisher: 'Hydro Flask', url: 'https://www.hydroflask.com/care-and-use' },
+  yeti: { label: 'Rambler care instructions', publisher: 'YETI', url: 'https://www.yeti.com/rambler-faq.html' },
+  lodge: { label: 'Cast iron cleaning guide', publisher: 'Lodge Cast Iron', url: 'https://www.lodgecastiron.com/discover/cleaning-and-care/cast-iron/all-about-seasoning' },
+  usdaBoards: { label: 'Cutting Boards and Food Safety', publisher: 'USDA FSIS', url: 'https://www.fsis.usda.gov/food-safety/safe-food-handling-and-preparation/food-safety-basics/cutting-boards' },
+  stanley: { label: 'Product FAQs and care', publisher: 'Stanley 1913', url: 'https://www.stanley1913.com/pages/faq' },
+  instantPot: { label: 'Instant Pot manuals', publisher: 'Instant Pot', url: 'https://instantpot.com/pages/manuals-and-resources' },
+  ball: { label: 'Canning jar care and use', publisher: 'Ball Mason Jars', url: 'https://www.ballmasonjars.com/canning-preserving-guides.html' },
+};
+
+const itemSourceKeys: Record<string, string[]> = {
+  'hydro-flask': ['hydroFlask'], 'yeti-cups': ['yeti'], 'wooden-spoons': ['manufacturerLabel'], 'kitchen-knives': ['manufacturerLabel'],
+  'silicone-bibs': ['manufacturerLabel'], 'baby-bottles': ['cdcBottles'], 'air-fryer-basket': ['ninjaSupport', 'manufacturerLabel'],
+  'air-fryer-crisper-plate': ['manufacturerLabel'], 'air-fryer-drawer': ['manufacturerLabel'], 'air-fryer-rack': ['manufacturerLabel'],
+  'air-fryer-silicone-liner': ['manufacturerLabel'], 'ninja-air-fryer-basket': ['ninjaSupport'], 'nonstick-pans': ['manufacturerLabel'],
+  'cast-iron-skillet': ['lodge'], 'crystal-glasses': ['manufacturerLabel'], 'mason-jars': ['ball'],
+  'cutting-boards-plastic': ['usdaBoards'], 'cutting-boards-wood': ['usdaBoards'], 'stanley-cup': ['stanley'],
+  'travel-mug-lids': ['manufacturerLabel'], 'instant-pot-lid': ['instantPot'], 'blender-jar': ['manufacturerLabel'],
+  'food-storage-containers': ['manufacturerLabel'], 'ceramic-mugs': ['manufacturerLabel'], 'fine-china': ['manufacturerLabel'], 'pet-bowls': ['manufacturerLabel'],
+};
+
+export function getItemProvenance(item: DishItem): ItemProvenance {
+  return { reviewedOn: item.updated, sources: (itemSourceKeys[item.slug] ?? []).map((key) => sourceCatalog[key]).filter(Boolean) };
+}
 
 export const materials: Material[] = [
   { slug: 'stainless-steel', name: 'stainless steel', defaultVerdict: 'yes', shortAnswer: 'Plain stainless steel is usually dishwasher safe, but insulated items, coatings, and glued handles can change the answer.', caveats: ['Check insulated bottles and vacuum-sealed items by model.', 'Avoid dishwashing sharp knife edges.', 'Dry promptly if the item has carbon steel or mixed metals.'] },

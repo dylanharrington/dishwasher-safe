@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/Icon.astro';
-import { findItem, items, verdictLabels, findMaterial } from '../../data/items';
+import { findItem, getItemProvenance, items, verdictLabels, findMaterial } from '../../data/items';
 export function getStaticPaths(){ return items.map((item)=>({ params:{ slug:item.slug }})); }
 const item = findItem(Astro.params.slug!); if(!item) throw new Error('Item not found');
 const title = item.question ?? `Can you put ${item.name} in the dishwasher?`;
-const updatedDate = item.updated ?? '2026-05-04';
+const updatedDate = item.updated;
 const updatedLabel = `Updated ${new Date(`${updatedDate}T00:00:00Z`).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' })}`;
 const description = `${item.shortAnswer} Includes rack placement, cycle, drying, and caveats.`;
 const verdictClass = item.verdict === 'top-rack' ? 'top-rack' : item.verdict;
@@ -16,6 +16,8 @@ const relatedItems = (item.relatedSlugs ?? [])
   .map((slug) => findItem(slug))
   .filter(Boolean);
 const extraFaqs = item.faqs ?? [];
+const provenance = getItemProvenance(item);
+const relatedLabel = (slug: string, fallback: string) => slug === 'air-fryer-basket' ? 'Generic basket and tray guidance' : slug === 'ninja-air-fryer-basket' ? 'Ninja model-specific guidance' : fallback;
 const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:[{'@type':'Question',name:title,acceptedAnswer:{'@type':'Answer',text:item.shortAnswer}},{'@type':'Question',name:`Where should ${item.name} go in the dishwasher?`,acceptedAnswer:{'@type':'Answer',text:item.placement}},...extraFaqs.map((faq)=>({'@type':'Question',name:faq.question,acceptedAnswer:{'@type':'Answer',text:faq.answer}}))]};
 const breadcrumbSchema = {'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'Home',item:homeUrl},{'@type':'ListItem',position:2,name:'Items',item:itemsUrl},{'@type':'ListItem',position:3,name:item.name,item:itemUrl}]};
 const articleSchema = {
@@ -48,10 +50,13 @@ const structuredData = [faqSchema, breadcrumbSchema, articleSchema];
       <div class="tiles"><div class="tile"><span class="tile-label">Rack</span><span class="tile-value">{item.placement}</span></div><div class="tile"><span class="tile-label">Cycle</span><span class="tile-value">{item.cycle}</span></div><div class="tile"><span class="tile-label">Drying</span><span class="tile-value">{item.dry}</span></div></div>
     </section>
     <section class="section"><h2>Why</h2><p>{item.why}</p></section>
-    {item.sourceNote && <section class="section"><h2>Source note</h2><p>{item.sourceNote}</p></section>}
+    {item.decisionRows && <section class="section"><div class="section-head"><h2>Part-by-part decision guide</h2><p>Match the exact removable part before choosing a wash method.</p></div><div class="table-wrap"><table><thead><tr><th>Part or model family</th><th>Dishwasher?</th><th>What to verify</th></tr></thead><tbody>{item.decisionRows.map((row)=><tr><th scope="row">{row.part}</th><td>{row.dishwasher}</td><td>{row.check}</td></tr>)}</tbody></table></div></section>}
+    {item.manualLookupSteps && <section class="section"><h2>Find the right manual</h2><ol class="steps">{item.manualLookupSteps.map((step)=><li>{step}</li>)}</ol></section>}
+    {item.sections?.map((section)=><section class="section"><h2>{section.heading}</h2><p>{section.body}</p></section>)}
+    <section class="section source-list"><div class="section-head"><h2>Sources and review</h2><p>{item.sourceNote ?? 'The exact item label or manufacturer care guide remains the deciding source.'}</p></div><p class="updated-line">Content reviewed {updatedLabel.replace('Updated ', '')}</p><ul>{provenance.sources.map((source)=><li><a href={source.url} rel="noopener" data-track="official_source_click" data-source-publisher={source.publisher}>{source.label} — {source.publisher}</a></li>)}</ul></section>
     <section class="section"><h2><Icon name="warning" /> Caveats</h2><ul class="caveats">{item.caveats.map((c)=><li><Icon name="warning" /><span>{c}</span></li>)}</ul></section>
-    {relatedItems.length > 0 && <section class="section"><div class="section-head"><h2>Related guides</h2><p>Nearby removable parts can have different dishwasher instructions.</p></div><div class="grid">{relatedItems.map((related)=><a class="card" href={`/items/${related!.slug}/`}><strong>{related!.name}</strong><p>{related!.shortAnswer}</p></a>)}</div></section>}
+    {relatedItems.length > 0 && <section class="section"><div class="section-head"><h2>Related guides</h2><p>Nearby removable parts can have different dishwasher instructions.</p></div><div class="grid">{relatedItems.map((related)=><a class="card" href={`/items/${related!.slug}/`} data-track="related_guide_click"><strong>{relatedLabel(related!.slug, related!.name)}</strong><p>{related!.shortAnswer}</p></a>)}</div></section>}
     <section class="section"><h2>Related materials</h2><div class="link-row">{item.materials.map((slug)=>{ const material = findMaterial(slug); return material && <a class="link-card" href={`/materials/${material.slug}/`}><span>{material.name}</span><Icon name="arrow" /></a>; })}</div></section>
-    <section class="section faq"><h2>FAQ</h2><details open><summary>Can {item.name} go on the bottom rack?</summary><p>{item.placement}</p></details><details><summary>Can you use heated dry?</summary><p>{item.dry}</p></details>{extraFaqs.map((faq)=><details><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</section>
+    <section class="section faq"><h2>FAQ</h2><details open data-track-faq><summary>Can {item.name} go on the bottom rack?</summary><p>{item.placement}</p></details><details data-track-faq><summary>Can you use heated dry?</summary><p>{item.dry}</p></details>{extraFaqs.map((faq)=><details data-track-faq><summary>{faq.question}</summary><p>{faq.answer}</p></details>)}</section>
   </article>
 </BaseLayout>

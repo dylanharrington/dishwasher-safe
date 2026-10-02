@@ -42,6 +42,7 @@ export type Material = {
   shortAnswer: string;
   defaultVerdict: Verdict;
   caveats: string[];
+  question?: string;
 };
 
 export const verdictLabels: Record<Verdict, string> = {
@@ -372,7 +373,7 @@ export const items: DishItem[] = [
 ];
 
 const sourceCatalog: Record<string, ItemSource> = {
-  manufacturerLabel: { label: 'Care label or manual for the exact item', publisher: 'Item manufacturer', url: 'https://www.whirlpool.com/blog/kitchen/what-is-and-is-not-dishwasher-safe.html' },
+  manufacturerLabel: { label: 'General dishwasher-safe guide (not specific to this item)', publisher: 'Whirlpool', url: 'https://www.whirlpool.com/blog/kitchen/what-is-and-is-not-dishwasher-safe.html' },
   cdcBottles: { label: 'Hygiene and cleaning guidance', publisher: 'CDC', url: 'https://www.cdc.gov/hygiene/about/index.html' },
   ninjaSupport: { label: 'Ninja manuals and support', publisher: 'Ninja', url: 'https://support.sharkninja.com/' },
   hydroFlask: { label: 'Product care', publisher: 'Hydro Flask', url: 'https://www.hydroflask.com/care-and-use' },
@@ -405,8 +406,8 @@ export const materials: Material[] = [
   { slug: 'silicone', name: 'silicone', defaultVerdict: 'top-rack', shortAnswer: 'Food-grade silicone is usually dishwasher safe, often on the top rack, but thin straps and printed designs may need gentler care.', caveats: ['Secure floppy silicone so it does not hold dirty water.', 'Air dry fully to prevent trapped odors.', 'Check any attached fabric, metal, or electronics.'] },
   { slug: 'wood', name: 'wood', defaultVerdict: 'no', shortAnswer: 'Wood usually should not go in the dishwasher because water and heat can warp, crack, and dry it out.', caveats: ['Hand wash quickly.', 'Dry upright.', 'Oil wood boards and utensils when they look dry.'] },
   { slug: 'glass', name: 'glass', defaultVerdict: 'yes', shortAnswer: 'Everyday glass is usually dishwasher safe, while crystal, antique, painted, or delicate glass should be hand washed.', caveats: ['Avoid sudden temperature shock.', 'Do not crowd delicate stemware.', 'Hand wash metallic or painted decoration.'] },
-  { slug: 'plastic-lids', name: 'plastic lids and containers', defaultVerdict: 'top-rack', shortAnswer: 'Dishwasher-safe plastic usually belongs on the top rack to reduce warping from heat.', caveats: ['Skip heated dry when seals matter.', 'Use a small-parts basket for lids and valves.', 'Replace warped or cracked plastic.'] },
-  { slug: 'nonstick', name: 'nonstick coatings', defaultVerdict: 'depends', shortAnswer: 'Some nonstick cookware is labeled dishwasher safe, but hand washing usually makes the coating last longer.', caveats: ['Avoid abrasive racks or detergents when possible.', 'Do not dishwash damaged or peeling coatings.', 'Follow the pan maker’s instructions.'] },
+  { slug: 'plastic-lids', name: 'plastic lids and containers', question: 'Are plastic lids and containers dishwasher safe?', defaultVerdict: 'top-rack', shortAnswer: 'Dishwasher-safe plastic usually belongs on the top rack to reduce warping from heat.', caveats: ['Skip heated dry when seals matter.', 'Use a small-parts basket for lids and valves.', 'Replace warped or cracked plastic.'] },
+  { slug: 'nonstick', name: 'nonstick coatings', question: 'Are nonstick coatings dishwasher safe?', defaultVerdict: 'depends', shortAnswer: 'Some nonstick cookware is labeled dishwasher safe, but hand washing usually makes the coating last longer.', caveats: ['Avoid abrasive racks or detergents when possible.', 'Do not dishwash damaged or peeling coatings.', 'Follow the pan maker’s instructions.'] },
   { slug: 'cast-iron', name: 'cast iron', defaultVerdict: 'no', shortAnswer: 'Cast iron should not go in the dishwasher because it can rust and lose seasoning.', caveats: ['Dry immediately after hand washing.', 'Oil lightly after cleaning.', 'Never leave cast iron soaking.'] },
   { slug: 'ceramic', name: 'ceramic', defaultVerdict: 'yes', shortAnswer: 'Everyday glazed ceramic is usually dishwasher safe; handmade, antique, or metallic-decorated pieces may not be.', caveats: ['Hand wash metallic trim.', 'Check pottery maker guidance.', 'Avoid dishwashing cracked pieces.'] },
 ];

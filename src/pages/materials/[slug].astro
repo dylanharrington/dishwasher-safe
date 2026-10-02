@@ -5,7 +5,7 @@ import { findMaterial, materials, itemsForMaterial, verdictLabels } from '../../
 export function getStaticPaths(){ return materials.map((material)=>({ params:{ slug:material.slug }})); }
 const material = findMaterial(Astro.params.slug!); if(!material) throw new Error('Material not found');
 const related = itemsForMaterial(material.slug);
-const title = `Is ${material.name} dishwasher safe?`;
+const title = material.question ?? `Is ${material.name} dishwasher safe?`;
 const updatedDate = '2026-05-04';
 const updatedLabel = 'Updated May 4, 2026';
 const description = material.shortAnswer;

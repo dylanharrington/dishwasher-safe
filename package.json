@@ -9,7 +9,8 @@
     "validate:rendered": "node scripts/validate-rendered.mjs",
     "build": "npm run validate:content && astro check && astro build && npm run validate:rendered",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "audit:high": "node scripts/audit-high.mjs"
   },
   "dependencies": {
     "@astrojs/check": "latest",

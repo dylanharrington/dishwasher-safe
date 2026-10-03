@@ -17,3 +17,9 @@ Verified 2026-08-19:
 - Astro resolves to 7.1.3, and the PostCSS dependency path resolves to patched `nanoid` 3.3.18.
 - `npm audit --audit-level=high` reports 0 vulnerabilities.
 - `npm run build` succeeds with 0 Astro diagnostics.
+
+## Accepted advisories
+
+`npm run audit:high` (also used by the npm audit workflow and the daily micro-site check) fails on any high or critical advisory except those listed in `.github/audit-allowlist.json`. An accepted advisory fails again as soon as a safe non-major fix exists or after its `reviewBy` date.
+
+- **GHSA-ch52-4w7c-c8xp** (http-cache-semantics, via Astro), accepted 2026-10-03 until 2026-11-03: no patched version exists. Astro uses the library only to cache remote images during the static build, and the site serves prebuilt files with no shared HTTP cache, so the cross-user cache leak doesn't apply.

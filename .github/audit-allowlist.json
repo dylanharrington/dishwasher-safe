@@ -1,0 +1,11 @@
+{
+  "advisories": [
+    {
+      "id": "GHSA-ch52-4w7c-c8xp",
+      "package": "http-cache-semantics",
+      "reason": "No patched version exists yet. Astro only uses it to cache remote images during the static build; the site serves prebuilt files with no shared HTTP cache, so the cross-user cache leak can't happen here.",
+      "added": "2026-10-03",
+      "reviewBy": "2026-11-03"
+    }
+  ]
+}

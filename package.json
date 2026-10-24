@@ -15,7 +15,7 @@
   "dependencies": {
     "@astrojs/check": "latest",
     "@astrojs/sitemap": "latest",
-    "astro": "^7.1.3",
+    "astro": "^7.4.2",
     "typescript": "latest"
   },
   "overrides": {
